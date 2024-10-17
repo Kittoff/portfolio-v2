@@ -15,9 +15,12 @@ const Menu = () => {
   const container = useRef(null);
   const tl = useRef();
   const [isOpen, setIsOpen] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
   useGSAP(
     () => {
       gsap.set(".holder", { y: 75 });
@@ -45,14 +48,40 @@ const Menu = () => {
     if (isOpen) {
       tl.current.play();
     } else {
-      tl.current.reverse();
+      if (!isNavigating) {
+        tl.current.reverse();
+      }
     }
-  }, [isOpen]);
+  }, [isOpen, isNavigating]);
+
+  const handleNavigationStart = () => {
+    setIsNavigating(true);
+    // Reverse the animation when navigating
+    tl.current.reverse();
+  };
+
+  const handleLoadComplete = () => {
+    setIsNavigating(false);
+    // Optionally, you can also reset the menu state here
+    setIsOpen(false);
+  };
+
+  // Listen for beforeunload event to trigger the reverse animation
+  useEffect(() => {
+    window.addEventListener("beforeunload", handleNavigationStart);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("beforeunload", handleNavigationStart);
+      // You may also want to reset the state here if necessary
+      handleLoadComplete();
+    };
+  }, []);
+
   return (
     <div ref={container} className="mb-14 text-right py-2 bg-red-400">
       <div>
         <span onClick={toggleMenu} className="p-2 cursor-pointer">
-          {" "}
           Menu
         </span>
       </div>
@@ -63,19 +92,19 @@ const Menu = () => {
           </span>
         </div>
         <div className="items-center justify-center flex flex-col h-2/3 gap-5">
-          {menuLinks.map((link) => {
-            return (
-              <div
-                className="text-5xl link-clip-path"
-                onClick={toggleMenu}
-                key={link.path}
-              >
-                <div className="holder relative">
-                  <Link href={link.path}>{link.label}</Link>
-                </div>
+          {menuLinks.map((link) => (
+            <div
+              className="text-5xl link-clip-path"
+              onClick={toggleMenu}
+              key={link.path}
+            >
+              <div className="holder relative">
+                <Link href={link.path} onClick={handleNavigationStart}>
+                  {link.label}
+                </Link>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </div>
