@@ -1,5 +1,5 @@
 "use client";
-import { BlurScrollEffect } from "@/app/utils/anim/blurScrollEffect";
+
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -16,7 +16,33 @@ const Card = ({ year, title, text }) => {
   useGSAP(
     () => {
       if (paragraphRef.current) {
-        new BlurScrollEffect(paragraphRef.current);
+        // new BlurScrollEffect(paragraphRef.current);
+        let splitParagraph = SplitType.create(".paragraph", {
+          splitTypeTypes: "chars",
+        });
+
+        gsap.fromTo(
+          splitParagraph.chars,
+          {
+            scaleY: 0.1,
+            scaleX: 1.8,
+            filter: "blur(10px) brightness(50%)",
+            willChange: "filter, transform",
+          },
+          {
+            ease: "none",
+            scaleY: 1,
+            scaleX: 1,
+            filter: "blur(0px) brightness(100%)",
+            stagger: 0.05,
+            scrollTrigger: {
+              trigger: paragraphRef.current,
+              start: "top bottom-=15%",
+              end: "bottom center+=15%",
+              scrub: true,
+            },
+          }
+        );
       }
 
       // Split the title into characters
@@ -72,7 +98,10 @@ const Card = ({ year, title, text }) => {
         </div>
       </div>
       <div className="h-[0.12rem] w-full bg-black opacity-50 mb-8" />
-      <div ref={paragraphRef} className="bg-red-500 break-words text-lg">
+      <div
+        ref={paragraphRef}
+        className="paragraph bg-red-500 break-words text-lg"
+      >
         {text}
       </div>
     </div>
