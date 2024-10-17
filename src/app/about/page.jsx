@@ -1,8 +1,6 @@
 "use client";
 import Card from "@/components/about/hitsory/Card";
-import React, { useEffect, useRef } from "react";
-import { BlurScrollEffect } from "../utils/anim/blurScrollEffect";
-import { useGSAP } from "@gsap/react";
+import React from "react";
 
 const Page = () => {
   return (
@@ -16,7 +14,7 @@ const Page = () => {
         </p>
       </div>
       <Card
-        text="Il faut bien un début à toute histoire. C’est à cette année que la mienne débute. N’ayez pas peur, je ne vais pas retracer chaque année de ma vie. Il est temps de passer au vif du sujet."
+        text="Il faut bien un début à toute histoire. C'est à cette année que la mienne débute. N'ayez pas peur, je ne vais pas retracer chaque année de ma vie. Il est temps de passer au vif du sujet."
         title={"don de mes parents au monde"}
         year={"1988"}
       />

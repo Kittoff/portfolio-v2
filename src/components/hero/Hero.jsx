@@ -14,8 +14,6 @@ const Hero = () => {
       if (name.current) {
         let split = SplitType.create(".name", { splitTypeTypes: "chars" });
 
-        //     console.log(split.chars);
-
         //     // Set initial state for characters
         gsap.set(split.chars, { y: "100%" });
         gsap.set(".job", { y: 10 });
@@ -44,39 +42,10 @@ const Hero = () => {
               y: 50,
               duration: 0.7,
               stagger: 0.16,
-              // ease: "power4.inOut",
             },
             "<-0.4"
           );
       }
-      // .to(".name", {
-      //   scale: 0.6,
-      //   // x: -300,
-      // })
-      // .to(".name", {
-      //   x: -300,
-      // });
-
-      //     // Set initial state for firstname
-      //     gsap.set(".firstname", { y: 0, opacity: 1 }); // Ensure starting position is set
-
-      //     tl.current = gsap
-      //       .timeline({})
-      //       .to(split.chars, {
-      //         y: 0,
-      //         duration: 1.3,
-      //         stagger: 0.03,
-      //         ease: "expo.out",
-      //       })
-      //       .to(
-      //         ".firstname",
-      //         {
-      //           scale: 0.6,
-      //           duration: 0.3,
-      //           ease: "expo.out",
-      //         },
-      //         "-=0.5"
-      //       );
     },
     { scope: container }
   );
