@@ -18,11 +18,11 @@ const Card = ({ year, title, text }) => {
       if (paragraphRef.current) {
         // new BlurScrollEffect(paragraphRef.current);
         let splitParagraph = SplitType.create(".paragraph", {
-          splitTypeTypes: "chars",
+          splitTypeTypes: "",
         });
 
         gsap.fromTo(
-          splitParagraph.chars,
+          splitParagraph.words,
           {
             scaleY: 0.1,
             scaleX: 1.8,
@@ -36,8 +36,9 @@ const Card = ({ year, title, text }) => {
             filter: "blur(0px) brightness(100%)",
             stagger: 0.05,
             scrollTrigger: {
-              trigger: paragraphRef.current,
-              start: "top bottom-=15%",
+              markers: true,
+              trigger: ".paragraph",
+              start: "top bottom-=10%",
               end: "bottom center+=15%",
               scrub: true,
             },
