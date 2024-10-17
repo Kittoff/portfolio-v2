@@ -51,7 +51,7 @@ const Hero = () => {
   );
   return (
     <div ref={container} className="">
-      <main className="texte h-screen  flex flex-col md:items-center  md:justify-around lg:flex-row text-7xl md:text-8xl ">
+      <main className="texte h-screen  flex flex-col md:items-center  md:justify-around lg:flex-row text-[70px] md:text-8xl ">
         <div className="wrapper  lg:w-2/3 invisible items-center flex flex-col gap-8">
           <div>
             <h1 className="job text-3xl text-customGrey opacity-0">
