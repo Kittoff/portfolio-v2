@@ -24,4 +24,11 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .overlay-clip-path {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+  }
+  .link-clip-path {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
 }
