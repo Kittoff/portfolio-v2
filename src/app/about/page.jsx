@@ -10,8 +10,8 @@ const Page = () => {
       <div className="flex flex-col gap-10">
         <h1 className="text-6xl text-center">Mon histoire</h1>
         <p className="mt-16 text-2xl">
-          Vous êtes curieux d’en savoir plus à mon sujet j’ai l’impression ?
-          Comme vous m’êtes sympathique, je vais tout vous raconter. Chacun
+          Vous êtes curieux d'en savoir plus à mon sujet j'ai l'impression ?
+          Comme vous m'êtes sympathique, je vais tout vous raconter. Chacun
           d'entre nous à un vécu.
         </p>
       </div>

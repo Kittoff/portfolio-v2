@@ -115,8 +115,8 @@ const Hero = () => {
 
               <p className="join text-xs md:w-1/2 lg:w-2/3 ">
                 Développeur Front-End passioné par le Creative Dev et avide
-                d’apprendre.J’aime relever des défis, partager avec les autres,
-                et voir la finalité d’un projet qui satisfait à la fois le
+                d'apprendre.J'aime relever des défis, partager avec les autres,
+                et voir la finalité d'un projet qui satisfait à la fois le
                 client mais aussi moi-même.
               </p>
               <div className="join text-xs text-center py-3 text-white w-full bg-customBlue md:w-1/2 lg:w-2/3 rounded-tl-[10px] rounded-tr-[30px] rounded-bl-[30px] rounded-br-[10px]">
