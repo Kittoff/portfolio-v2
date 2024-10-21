@@ -6,60 +6,57 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React, { useRef } from "react";
 import SplitType from "split-type";
 
-gsap.registerPlugin(ScrollTrigger);
-
-const Card = ({ year, title, text }) => {
+const Card = ({ year, title, text, classname, index }) => {
   const paragraphRef = useRef(null);
   const containerRef = useRef(null);
+  const titleRef = useRef(null); // Ajout d'une référence pour le titre
   const tl = useRef();
 
   useGSAP(
     () => {
-      if (paragraphRef.current) {
-        // new BlurScrollEffect(paragraphRef.current);
-        let splitParagraph = SplitType.create(".paragraph", {
-          splitTypeTypes: "",
-        });
+      gsap.registerPlugin(ScrollTrigger);
 
-        gsap.fromTo(
-          splitParagraph.words,
-          {
-            scaleY: 0.1,
-            scaleX: 1.8,
-            filter: "blur(10px) brightness(50%)",
-            willChange: "filter, transform",
+      const splitParagraph = SplitType.create(paragraphRef.current, {
+        splitTypeTypes: "words",
+      });
+
+      gsap.fromTo(
+        splitParagraph.words,
+        {
+          scaleY: 0.1,
+          scaleX: 1.8,
+          filter: "blur(10px) brightness(50%)",
+          willChange: "filter, transform",
+        },
+        {
+          ease: "none",
+          scaleY: 1,
+          scaleX: 1,
+          filter: "blur(0px) brightness(100%)",
+          stagger: 0.05,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top bottom-=10%",
+            end: "bottom center+=15%",
+            scrub: true,
+            markers: true,
           },
-          {
-            ease: "none",
-            scaleY: 1,
-            scaleX: 1,
-            filter: "blur(0px) brightness(100%)",
-            stagger: 0.05,
-            scrollTrigger: {
-              markers: true,
-              trigger: ".paragraph",
-              start: "top bottom-=10%",
-              end: "bottom center+=15%",
-              scrub: true,
-            },
-          }
-        );
-      }
+        }
+      );
 
-      // Split the title into characters
-      //   const split = new SplitText(".title", { type: "chars" });
-      let split = SplitType.create(".title", { splitTypeTypes: "chars" });
-      gsap.set(split.chars, { y: 50, autoAlpha: 1 });
+      const splitTitle = SplitType.create(titleRef.current, {
+        splitTypeTypes: "chars",
+      });
+      gsap.set(splitTitle.chars, { y: 50, autoAlpha: 1 });
       gsap.set(".year", { y: 50 });
 
-      // Create a new timeline
       tl.current = gsap
         .timeline({
           scrollTrigger: {
-            trigger: ".title",
-            markers: true,
+            trigger: containerRef.current,
             start: "top 80%",
             end: "bottom 25%",
+            markers: true,
           },
         })
         .to(".year", {
@@ -68,23 +65,19 @@ const Card = ({ year, title, text }) => {
           autoAlpha: 1,
           ease: "back.out(0.6)",
         })
-        .to(
-          split.chars,
-          {
-            duration: 0.2,
-            y: 0,
-            stagger: 0.02,
-            ease: "expo.out",
-          },
-          "-=0.3"
-        );
+        .to(splitTitle.chars, {
+          duration: 0.2,
+          y: 0,
+          stagger: 0.02,
+          ease: "expo.out",
+        });
     },
     { scope: containerRef }
   );
 
   return (
-    <div ref={containerRef} className="mt-32">
-      <div className="flex items-end gap-5 md:gap-24">
+    <div ref={containerRef} className={`${classname} mt-32`}>
+      <div className="flex items-end gap-6 md:gap-24">
         <div className="text-4xl">
           <div className="link-clip-path">
             <div className="holder relative">
@@ -94,7 +87,9 @@ const Card = ({ year, title, text }) => {
         </div>
         <div className="link-clip-path">
           <div className="holder relative">
-            <div className="title">{title}</div>
+            <div ref={titleRef} className="title text-sm">
+              {title}
+            </div>
           </div>
         </div>
       </div>
@@ -108,5 +103,4 @@ const Card = ({ year, title, text }) => {
     </div>
   );
 };
-
 export default Card;

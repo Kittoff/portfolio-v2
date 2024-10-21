@@ -51,10 +51,10 @@ const Hero = () => {
   );
   return (
     <div ref={container} className="">
-      <main className="texte h-screen  flex flex-col md:items-center  md:justify-around lg:flex-row text-[70px] md:text-8xl ">
-        <div className="wrapper  lg:w-2/3 invisible items-center flex flex-col gap-8">
+      <main className="texte h-[calc(100vh-80px)]  flex flex-col md:items-center  md:justify-around lg:flex-row text-step_1">
+        <div className="wrapper  lg:w-2/3 invisible items-center flex flex-col ">
           <div>
-            <h1 className="job text-3xl text-customGrey opacity-0">
+            <h1 className="job text-step__2 text-customGrey opacity-0">
               Freelance Developer
             </h1>
           </div>
@@ -75,7 +75,7 @@ const Hero = () => {
           </div>
           <div className="flex flex-col items-center gap-4">
             <div className=" flex flex-col items-center gap-4">
-              <div className="join flex gap-2">
+              <div className="join flex gap-2 mt-3">
                 <div className="bg-green-400 border-3 border-green-600 w-4 h-4 rounded-full" />
                 <div className="text-xs text-customGrey">
                   Disponible pour projets
