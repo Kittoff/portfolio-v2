@@ -94,7 +94,7 @@ const Card = ({ year, title, text, classname, index }) => {
           </div>
         </div>
       </div>
-      <div className="h-[0.12rem] w-full bg-black opacity-50 mb-8" />
+      <div className="h-[0.12rem] w-full bg-slate-500 opacity-50 mb-8" />
       <div
         ref={paragraphRef}
         className="paragraph break-words text-lg md:w-[500px] "
