@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Menu from "../components/header/Menu";
+import SmoothScrolling from "@/components/SmoothScrolling";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -39,7 +40,7 @@ export default function RootLayout({ children }) {
         ${inter.className} antialiased`}
       >
         <Menu />
-        {children}
+        <SmoothScrolling>{children}</SmoothScrolling>
       </body>
     </html>
   );

@@ -12,7 +12,7 @@ const history = [
     year: "1988",
   },
   {
-    text: "Après des métiers alimentaires divers et variés, c'est à cette période que j'ai décidé de me lancer dans ce qui a toujour trotté dans ma tête. Le développement. Durant 10 mois, j'ai appris les bases du développement ainsi que toute la partie conception. Dès ce moment-là, je savais que je voulais me lancer dans le développement Creative Dev.",
+    text: "Après des métiers alimentaires divers et variés, c'est à cette période que j'ai décidé de me lancer dans ce qui a toujour trotté dans ma tête. Le développement. Durant 10 mois, lors d'une reconversion professionnelle, j'ai appris les bases du développement ainsi que toute la partie conception. Dès ce moment-là, je savais que je voulais me lancer dans le développement Creative Dev.",
     year: "2018",
     title: "Formation Concepteur Développeur Informatique",
   },
