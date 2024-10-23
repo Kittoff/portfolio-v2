@@ -51,10 +51,10 @@ const Hero = () => {
   );
   return (
     <div ref={container} className="">
-      <main className="texte h-[calc(100vh-80px)]  flex flex-col md:items-center  md:justify-around lg:flex-row text-step_1">
+      <main className="texte h-[calc(100vh-80px)]  flex flex-col md:items-center  md:justify-around lg:flex-row text-step_h_1">
         <div className="wrapper  lg:w-2/3 invisible items-center flex flex-col ">
           <div>
-            <h1 className="job text-step__2 text-customGrey opacity-0">
+            <h1 className="job text-step_h__2 text-customGrey opacity-0">
               Freelance Developer
             </h1>
           </div>

@@ -36,10 +36,9 @@ const Card = ({ year, title, text, classname, index }) => {
           stagger: 0.05,
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top bottom-=10%",
+            start: "top bottom-=30%",
             end: "bottom center+=15%",
             scrub: true,
-            markers: true,
           },
         }
       );
@@ -56,7 +55,6 @@ const Card = ({ year, title, text, classname, index }) => {
             trigger: containerRef.current,
             start: "top 80%",
             end: "bottom 25%",
-            markers: true,
           },
         })
         .to(".year", {
@@ -76,8 +74,11 @@ const Card = ({ year, title, text, classname, index }) => {
   );
 
   return (
-    <div ref={containerRef} className={`${classname} mt-32`}>
-      <div className="flex items-end gap-6 md:gap-24">
+    <div
+      ref={containerRef}
+      className={`${classname} mt-40 flex flex-col items-center`}
+    >
+      <div className="flex items-end gap-6 md:gap-44 w-full">
         <div className="text-4xl">
           <div className="link-clip-path">
             <div className="holder relative">
@@ -86,8 +87,8 @@ const Card = ({ year, title, text, classname, index }) => {
           </div>
         </div>
         <div className="link-clip-path">
-          <div className="holder relative">
-            <div ref={titleRef} className="title text-sm">
+          <div className="holder relative text-step_p_1">
+            <div ref={titleRef} className="title">
               {title}
             </div>
           </div>
@@ -96,7 +97,7 @@ const Card = ({ year, title, text, classname, index }) => {
       <div className="h-[0.12rem] w-full bg-black opacity-50 mb-8" />
       <div
         ref={paragraphRef}
-        className="paragraph bg-red-500 break-words text-lg"
+        className="paragraph break-words text-lg md:w-[500px] "
       >
         {text}
       </div>

@@ -66,7 +66,7 @@ const Menu = () => {
           {menuLinks.map((link) => {
             return (
               <div
-                className="text-step_0 link-clip-path"
+                className="text-step_h_0 link-clip-path"
                 onClick={toggleMenu}
                 key={link.path}
               >
