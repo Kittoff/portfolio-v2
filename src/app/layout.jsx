@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Menu from "../components/header/Menu";
 import SmoothScrolling from "@/components/SmoothScrolling";
+import Footer from "@/components/footer/Footer";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -35,12 +36,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${melodrama.variable}`}>
-      <body
-        className={` px-5
-        ${inter.className} antialiased`}
-      >
+      <body className={`${inter.className} antialiased`}>
         <Menu />
         <SmoothScrolling>{children}</SmoothScrolling>
+        <Footer />
       </body>
     </html>
   );

@@ -37,6 +37,7 @@ module.exports = {
         foreground: "var(--foreground)",
         customGrey: "#686868",
         customBlue: "#223C52",
+        customBlack: "#464a58",
       },
       borderWidth: {
         3: "3px",

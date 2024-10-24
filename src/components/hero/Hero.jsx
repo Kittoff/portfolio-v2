@@ -50,8 +50,8 @@ const Hero = () => {
     { scope: container }
   );
   return (
-    <div ref={container} className="">
-      <main className="texte h-[calc(100vh-80px)]  flex flex-col md:items-center  md:justify-around lg:flex-row text-step_h_1">
+    <div ref={container}>
+      <main className="texte h-screen  flex flex-col md:items-center  md:justify-around lg:flex-row text-step_h_1">
         <div className="wrapper  lg:w-2/3 invisible items-center flex flex-col ">
           <div>
             <h1 className="job text-step_h__2 text-customGrey opacity-0">
