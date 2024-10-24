@@ -61,7 +61,7 @@ const Page = () => {
     { scope: container }
   );
   return (
-    <div ref={container}>
+    <div ref={container} className="px-5">
       <div className="wrapper invisible  mb-80">
         <div className="h-screen flex items-center flex-col gap-10">
           <div></div>
