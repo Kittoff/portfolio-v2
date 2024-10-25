@@ -41,7 +41,7 @@ const Card = ({ year, title, text, classname, index }) => {
             end: "bottom center+=15%",
             scrub: true,
           },
-        }
+        },
       );
 
       const splitTitle = SplitType.create(titleRef.current, {
@@ -71,7 +71,7 @@ const Card = ({ year, title, text, classname, index }) => {
           ease: "expo.out",
         });
     },
-    { scope: containerRef }
+    { scope: containerRef },
   );
 
   return (
@@ -79,7 +79,7 @@ const Card = ({ year, title, text, classname, index }) => {
       ref={containerRef}
       className={`${classname} mt-40 flex flex-col items-center`}
     >
-      <div className="flex items-end gap-6 md:gap-44 w-full">
+      <div className="flex w-full items-end gap-6 md:gap-44">
         <div className="text-4xl">
           <div className="link-clip-path">
             <div className="holder relative">
@@ -98,7 +98,7 @@ const Card = ({ year, title, text, classname, index }) => {
       <Delimiter />
       <div
         ref={paragraphRef}
-        className="paragraph break-words text-lg md:w-[500px] "
+        className="paragraph break-words text-lg md:w-[500px]"
       >
         {text}
       </div>

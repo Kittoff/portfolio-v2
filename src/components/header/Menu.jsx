@@ -38,7 +38,7 @@ const Menu = () => {
           delay: -0.75,
         });
     },
-    { scope: container }
+    { scope: container },
   );
 
   useEffect(() => {
@@ -49,24 +49,23 @@ const Menu = () => {
     }
   }, [isOpen]);
   return (
-    <div ref={container} className="mb-6 text-right py-2 bg-red-400">
+    <div ref={container} className="mb-6 bg-red-400 py-2 text-right">
       <div>
-        <span onClick={toggleMenu} className="p-2 cursor-pointer">
-          {" "}
+        <span onClick={toggleMenu} className="cursor-pointer p-2">
           Menu
         </span>
       </div>
-      <div className="overlay overlay-clip-path bg-green-500 fixed top-0 left-0 w-screen h-screen p-2 px-5 z-10 flex flex-col">
-        <div className="cursor-pointer" onClick={toggleMenu}>
-          <span onClick={toggleMenu} className="p-2 cursor-pointer">
+      <div className="overlay overlay-clip-path fixed left-0 top-0 z-10 flex h-screen w-screen flex-col bg-green-500 p-2 px-5">
+        <div>
+          <span onClick={toggleMenu} className="cursor-pointer p-2">
             Menu
           </span>
         </div>
-        <div className="items-center justify-center flex flex-col h-2/3 gap-5">
+        <div className="flex h-2/3 flex-col items-center justify-center gap-5">
           {menuLinks.map((link) => {
             return (
               <div
-                className="text-step_h_0 link-clip-path"
+                className="link-clip-path text-step_h_0"
                 onClick={toggleMenu}
                 key={link.path}
               >

@@ -7,7 +7,7 @@ export default function Footer() {
       className="relative h-[900px]"
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
-      <div className="md:fixed bottom-0 h-[900px] w-full">
+      <div className="bottom-0 h-[900px] w-full md:fixed">
         <Content />
       </div>
     </div>

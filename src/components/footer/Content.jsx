@@ -4,7 +4,7 @@ import Delimiter from "../Delimiter";
 
 export default function Content() {
   return (
-    <div className="bg-customBlack text-white py-8 px-6 md:px-12 h-full w-full flex flex-col justify-between">
+    <div className="flex h-full w-full flex-col justify-between bg-customBlack px-6 py-8 text-white md:px-12">
       <Section1 />
       <Section3 />
       <Section2 />
@@ -14,7 +14,7 @@ export default function Content() {
 
 const Section1 = () => {
   return (
-    <div className="lg:px-40 ">
+    <div className="lg:px-40">
       <Nav />
     </div>
   );
@@ -22,11 +22,11 @@ const Section1 = () => {
 
 const Section3 = () => {
   return (
-    <div className=" h-40 flex flex-col justify-evenly md:justify-normal md:gap-11 md:flex-row md:h-20 md:content-start md:w-3/4 lg:px-40  overflow-hidden">
-      <div className="bg-red-400 rounded-full px-5 py-5 md:py-3 flex items-center justify-center">
+    <div className="flex h-40 flex-col justify-evenly overflow-hidden md:h-20 md:w-3/4 md:flex-row md:content-start md:justify-normal md:gap-11 lg:px-40">
+      <div className="flex items-center justify-center rounded-full bg-red-400 px-5 py-5 md:py-1">
         <a href="mailto:info@christophelozano.com">info@christophelozano.com</a>
       </div>
-      <div className="bg-red-400 rounded-full  px-5 py-5 md:py-3 flex items-center justify-center">
+      <div className="flex items-center justify-center rounded-full bg-red-400 px-5 py-5 md:py-1">
         <a className="w-max" href="tel:info@christophelozano.com">
           +33 6 00 00 00 00
         </a>
@@ -37,17 +37,15 @@ const Section3 = () => {
 
 const Section2 = () => {
   return (
-    <div className="flex flex-col shrink-0  justify-between">
+    <div className="flex shrink-0 flex-col justify-between">
       <Delimiter />
       <div className="flex justify-between">
         <div className="flex flex-col gap-2">
-          <h3 className=" text-step_p__1 uppercase text-[#ffffff80]">
-            Version
-          </h3>
+          <h3 className="text-step_p__1 uppercase text-[#ffffff80]">Version</h3>
           <p className="flex">2024 © Edition</p>
         </div>
         <div className="flex flex-col gap-2">
-          <h3 className=" text-step_p__1 uppercase text-[#ffffff80]">
+          <h3 className="text-step_p__1 uppercase text-[#ffffff80]">
             Local Time
           </h3>
           <Time />
@@ -63,10 +61,10 @@ const Section2 = () => {
 
 const Nav = () => {
   return (
-    <div className="flex shrink-1 gap-20 mt-28">
+    <div className="shrink-1 mt-28 flex gap-20">
       <h2 className="flex flex-col items-start text-step_h_0">
-        <div className="flex gap-1 items-center ">
-          <div className="w-8 h-8 bg-red-300 rounded-full " />
+        <div className="flex items-center gap-1">
+          <div className="h-8 w-8 rounded-full bg-red-300" />
           Travaillons
         </div>
         <div>ensemble</div>

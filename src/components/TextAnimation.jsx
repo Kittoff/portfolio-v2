@@ -17,7 +17,7 @@ const TextAnimation = ({ text }) => {
         ease: "expo.out",
       });
     },
-    { scope: containerRef }
+    { scope: containerRef },
   );
 
   // Diviser le texte en lettres et créer des spans

@@ -33,7 +33,7 @@ const Hero = () => {
               duration: 1,
               y: 0,
             },
-            "<+2"
+            "<+2",
           )
           .from(
             ".join",
@@ -43,16 +43,16 @@ const Hero = () => {
               duration: 0.7,
               stagger: 0.16,
             },
-            "<-0.4"
+            "<-0.4",
           );
       }
     },
-    { scope: container }
+    { scope: container },
   );
   return (
     <div ref={container}>
-      <main className="texte h-screen  flex flex-col md:items-center  md:justify-around lg:flex-row text-step_h_1">
-        <div className="wrapper  lg:w-2/3 invisible items-center flex flex-col ">
+      <main className="texte flex h-screen flex-col text-step_h_1 md:items-center md:justify-around lg:flex-row">
+        <div className="wrapper invisible flex flex-col items-center lg:w-2/3">
           <div>
             <h1 className="job text-step_h__2 text-customGrey opacity-0">
               Freelance Developer
@@ -60,35 +60,35 @@ const Hero = () => {
           </div>
           <div
             ref={name}
-            className="name font-melodrama flex flex-col items-center"
+            className="name flex flex-col items-center font-melodrama"
           >
-            <div className="link-clip-path ">
+            <div className="link-clip-path">
               <div className="holder relative">
                 <span>Christophe</span>
               </div>
             </div>
-            <div className="link-clip-path ">
-              <div className="holder relative ">
+            <div className="link-clip-path">
+              <div className="holder relative">
                 <span>LOZANO</span>
               </div>
             </div>
           </div>
           <div className="flex flex-col items-center gap-4">
-            <div className=" flex flex-col items-center gap-4">
-              <div className="join flex gap-2 mt-3">
-                <div className="bg-green-400 border-3 border-green-600 w-4 h-4 rounded-full" />
+            <div className="flex flex-col items-center gap-4">
+              <div className="join mt-3 flex gap-2">
+                <div className="h-4 w-4 rounded-full border-3 border-green-600 bg-green-400" />
                 <div className="text-xs text-customGrey">
                   Disponible pour projets
                 </div>
               </div>
 
-              <p className="join text-xs md:w-1/2 lg:w-2/3 ">
+              <p className="join text-xs md:w-1/2 lg:w-2/3">
                 Développeur Front-End passioné par le Creative Dev et avide
                 d'apprendre.J'aime relever des défis, partager avec les autres,
                 et voir la finalité d'un projet qui satisfait à la fois le
                 client mais aussi moi-même.
               </p>
-              <div className="join text-xs text-center py-3 text-white w-full bg-customBlue md:w-1/2 lg:w-2/3 rounded-tl-[10px] rounded-tr-[30px] rounded-bl-[30px] rounded-br-[10px]">
+              <div className="join w-full rounded-bl-[30px] rounded-br-[10px] rounded-tl-[10px] rounded-tr-[30px] bg-customBlue py-3 text-center text-xs text-white md:w-1/2 lg:w-2/3">
                 Rejoignons-nous
               </div>
             </div>
