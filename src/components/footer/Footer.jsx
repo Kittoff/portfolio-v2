@@ -4,10 +4,10 @@ import Content from "./Content";
 export default function Footer() {
   return (
     <div
-      className="relative h-screen"
+      className="relative h-[900px]"
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
-      <div className="md:fixed bottom-0 h-screen w-full">
+      <div className="md:fixed bottom-0 h-[900px] w-full">
         <Content />
       </div>
     </div>

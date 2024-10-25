@@ -1,5 +1,6 @@
 "use client";
 
+import Delimiter from "@/components/Delimiter";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -94,7 +95,7 @@ const Card = ({ year, title, text, classname, index }) => {
           </div>
         </div>
       </div>
-      <div className="h-[0.12rem] w-full bg-slate-500 opacity-50 mb-8" />
+      <Delimiter />
       <div
         ref={paragraphRef}
         className="paragraph break-words text-lg md:w-[500px] "
