@@ -49,7 +49,7 @@ const Menu = () => {
     }
   }, [isOpen]);
   return (
-    <div ref={container} className="mb-6 bg-red-400 px-5 py-2 text-right">
+    <div ref={container} className=" bg-red-400 px-5 py-2 text-right">
       <div>
         <span onClick={toggleMenu} className="cursor-pointer p-2">
           Menu
