@@ -2,8 +2,8 @@ import Experiences from "@/components/experiences/Experiences";
 
 const page = () => {
   return (
-    <div className="">
-      <div className="flex  flex-col items-center gap-10 h-screen bg-red-300 text-center">
+    <div className="px-5">
+      <div className="flex  flex-col items-center gap-10 bg-red-300 text-center">
 
     <h2 className="text-step_h_0 pt-5">Expériences</h2>
     <p className="text-left text-step_p_0  max-w-[800px]">
@@ -16,7 +16,7 @@ const page = () => {
       Il est aussi essentiel de se connaître en tant que développeur, afin de répondre le plus précisément aux attentes.
       Tous ces projets ont également été formateurs sur ces points.
     </p>
-    <p>Je vous laisse maintenant découvrir une partie des projets sur lesquels j'ai pu travailler</p>
+    <p className="text-step_p__1 text-left">Je vous laisse maintenant découvrir une partie des projets sur lesquels j'ai pu travailler</p>
       </div>
 
     <Experiences/>
