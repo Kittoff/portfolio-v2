@@ -55,24 +55,24 @@ const Page = () => {
             y: 0,
             ease: "power4.inOut",
           },
-          "+0.6 "
+          "+0.6 ",
         );
     },
-    { scope: container }
+    { scope: container },
   );
   return (
     <div ref={container} className="px-5">
-      <div className="wrapper invisible  mb-80">
-        <div className="h-screen flex items-center flex-col gap-10">
+      <div className="wrapper invisible mb-80">
+        <div className="flex h-screen flex-col items-center gap-10">
           <div></div>
           <div className="history">
-            <h1 className="text-step_h_0 text-center mt-16">
-              <div className="link-clip-path ">
+            <h1 className="mt-16 text-center text-step_h_0">
+              <div className="link-clip-path">
                 <div className="holder relative">Mon histoire</div>
               </div>
             </h1>
           </div>
-          <p className="intro mt-16 md:w-2/3 text-step_p_1 opacity-0">
+          <p className="intro mt-16 text-step_p_1 opacity-0 md:w-2/3">
             Vous êtes curieux d'en savoir plus à mon sujet j'ai l'impression ?
             Comme vous m'êtes sympathique, je vais tout vous raconter. Chacun
             d'entre nous à un vécu.

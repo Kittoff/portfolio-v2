@@ -25,7 +25,7 @@ const Card = ({ year, title, text, classname, index }) => {
         splitParagraph.words,
         {
           scaleY: 0.1,
-          scaleX: 1.8,
+          scaleX: 1.3,
           filter: "blur(10px) brightness(50%)",
           willChange: "filter, transform",
         },
