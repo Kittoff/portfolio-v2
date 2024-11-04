@@ -9,6 +9,7 @@ const menuLinks = [
   { path: "/", label: "Home" },
   { path: "/about", label: "Mon histoire" },
   { path: "/experience", label: "Expériences" },
+  { path: "/contact", label: "Contact" },
 ];
 
 const Menu = () => {

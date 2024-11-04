@@ -5,11 +5,11 @@ import Menu from "../components/header/Menu";
 import SmoothScrolling from "@/components/SmoothScrolling";
 import Footer from "@/components/footer/Footer";
 
-// const geistSans = localFont({
-//   src: "./fonts/GeistVF.woff",
-//   variable: "--font-geist-sans",
-//   weight: "100 900",
-// });
+const bigilla = localFont({
+  src: "./fonts/Bigilla.otf",
+  variable: "--font-bigilla",
+  weight: "100 900",
+});
 // const geistMono = localFont({
 //   src: "./fonts/GeistMonoVF.woff",
 //   variable: "--font-geist-mono",
@@ -35,8 +35,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${melodrama.variable}`}>
-      <body className={`${inter.className} antialiased bg-[#FAFAFA]`}>
+    <html lang="en" className={`${melodrama.variable} ${bigilla.variable}`}>
+      <body className={`${inter.className} bg-[#FAFAFA] antialiased`}>
         <Menu />
         <SmoothScrolling>{children}</SmoothScrolling>
         <Footer />

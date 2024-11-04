@@ -50,11 +50,11 @@ const Hero = () => {
     { scope: container },
   );
   return (
-    <div ref={container}>
-      <main className="texte flex h-screen flex-col text-step_h_1 md:items-center md:justify-around lg:flex-row">
-        <div className="wrapper invisible flex flex-col items-center lg:w-2/3">
+    <div ref={container} className="">
+      <main className="texte flex h-screen flex-col text-[70px] md:items-center md:justify-around md:text-8xl lg:flex-row">
+        <div className="wrapper invisible flex flex-col items-center gap-8 lg:w-2/3">
           <div>
-            <h1 className="job text-step_h__2 text-customGrey opacity-0">
+            <h1 className="job text-3xl text-customGrey opacity-0">
               Freelance Developer
             </h1>
           </div>
@@ -75,7 +75,7 @@ const Hero = () => {
           </div>
           <div className="flex flex-col items-center gap-4">
             <div className="flex flex-col items-center gap-4">
-              <div className="join mt-3 flex gap-2">
+              <div className="join flex gap-2">
                 <div className="h-4 w-4 rounded-full border-3 border-green-600 bg-green-400" />
                 <div className="text-xs text-customGrey">
                   Disponible pour projets
