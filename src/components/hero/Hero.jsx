@@ -62,8 +62,8 @@ const Hero = () => {
             ref={name}
             className="name flex flex-col items-center font-melodrama"
           >
-            <div className="link-clip-path bg-red-300">
-              <div className="holder relative bg-blue-200">
+            <div className="link-clip-path">
+              <div className="holder relative">
                 <span>Christophe</span>
               </div>
             </div>
