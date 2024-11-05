@@ -62,7 +62,7 @@ const Menu = () => {
             Menu
           </span>
         </div>
-        <div className="flex h-2/3 flex-col items-center justify-center gap-5">
+        <div className="flex   flex-col items-center justify-center gap-5">
           {menuLinks.map((link) => {
             return (
               <div
