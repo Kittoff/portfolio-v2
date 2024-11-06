@@ -50,7 +50,7 @@ const Menu = () => {
     }
   }, [isOpen]);
   return (
-    <div ref={container} className=" bg-red-400 px-5 py-2 text-right">
+    <div ref={container} className="px-5 py-2 text-right">
       <div>
         <span onClick={toggleMenu} className="cursor-pointer p-2">
           Menu
@@ -62,7 +62,7 @@ const Menu = () => {
             Menu
           </span>
         </div>
-        <div className="flex   flex-col items-center justify-center gap-5">
+        <div className="flex flex-col items-center justify-center gap-5">
           {menuLinks.map((link) => {
             return (
               <div
