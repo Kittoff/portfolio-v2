@@ -21,7 +21,7 @@ const Contact = () => {
       gsap.set(".animated-text, .animated-input", { y: "100%" });
 
       tl.current = gsap
-        .timeline({ delay: 0.3 })
+        .timeline({ delay: 1.25 })
         .to(".animated-text", {
           y: 0,
           duration: 1.3,
