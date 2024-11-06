@@ -5,6 +5,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --after-scale: 1;
+  --color-bg-highlight: #6a5ace;
+  --color-highlight-start: #e1def4;
 }
 
 *,
@@ -29,6 +32,9 @@ body {
 @layer components {
   .custom_after {
     @apply after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-white;
+  }
+  .highlight {
+    @apply relative inline-block whitespace-nowrap rounded-lg bg-[--color-bg-highlight] bg-none text-[#e1def4] after:absolute after:bottom-[-7.5%] after:left-[-2.5%] after:top-[10%] after:z-[-1] after:w-[105%] after:scale-[1];
   }
 }
 @layer utilities {
