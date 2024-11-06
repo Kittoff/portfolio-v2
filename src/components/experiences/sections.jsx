@@ -7,7 +7,7 @@ export const sections = [
     title: "XDog",
     subtitle:
       "Serveur Multi Mission Coverage Management pour Pléiades / Astroterra Et les futurs satellites d’observation de la terre.",
-    text: "Conceptualiser et intégrer une interface pour Airbus afin de récupérer des données d'images satellites dans une zone définie par l'utilisateur.",
+    text: "Conceptualiser et intégrer une interface pour Airbus  afin de récupérer des données d'images satellites dans une zone définie par l'utilisateur.",
     highlightWord: ["Airbus"],
   },
   {

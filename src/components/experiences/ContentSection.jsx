@@ -19,6 +19,7 @@ const ContentSection = ({
   const tl = useRef();
   const containerRef = useRef();
   const hxRef = useRef();
+
   const renderText = (text, highlightWord) => {
     if (!highlightWord) return text;
 
@@ -27,26 +28,26 @@ const ContentSection = ({
       ? highlightWord
       : [highlightWord];
 
-    // Si aucun mot à mettre en évidence, retourner le texte tel quel
-    if (wordsToHighlight.length === 0) return text;
-
     let modifiedText = text;
 
     // Appliquer le highlighting pour chaque mot du tableau
     wordsToHighlight.forEach((word) => {
       if (word && text.includes(word)) {
-        // Créer une regex pour vérifier si le mot est suivi d'un point ou d'une virgule
-        const regex = new RegExp(`(${word})(?=[,.]?)`, "g");
+        // Regex pour mettre en surbrillance le mot
+        const regex = new RegExp(`(${word})(?=\\s+|$|[,.])`, "g");
         modifiedText = modifiedText.replace(
           regex,
-          "<span class='hx highlight'>$1</span>", // Utiliser $1 pour conserver le mot
+          "<span class='hx highlight'>$1</span>",
         );
 
-        // Vérifier si le mot est suivi d'un point ou d'une virgule
-        const punctuationRegex = new RegExp(`(${word})([,.])`, "g");
+        // Vérifier si le mot est suivi d'un autre mot (pas de ponctuation)
+        const spaceRegex = new RegExp(
+          `(<span class='hx highlight'>${word}</span>)(?=\\s+\\w)`,
+          "g",
+        );
         modifiedText = modifiedText.replace(
-          punctuationRegex,
-          "<span class='hx highlight'>$1</span>$2", // Conserver la ponctuation sans espace
+          spaceRegex,
+          "$1<span style='margin-right: 10px;'></span>", // Ajoute un espace avec marge à droite
         );
       }
     });
@@ -58,7 +59,6 @@ const ContentSection = ({
     () => {
       gsap.registerPlugin(ScrollTrigger);
       if (hxRef.current) {
-        console.log(document.querySelectorAll(".hx"));
         const chars = SplitType.create(hxRef.current, {
           splitTypeTypes: "chars",
         });
@@ -83,6 +83,7 @@ const ContentSection = ({
               scale: 1,
             },
           );
+
         const highlightedElements = hxRef.current.querySelectorAll(".hx");
 
         highlightedElements.forEach((el) => {
