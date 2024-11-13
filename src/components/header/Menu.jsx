@@ -50,13 +50,13 @@ const Menu = () => {
     }
   }, [isOpen]);
   return (
-    <div ref={container} className="px-5 py-2 text-right">
+    <div ref={container} className="text-secondary px-5 py-2 text-right">
       <div>
         <span onClick={toggleMenu} className="cursor-pointer p-2">
-          Menu
+          <span className="text-secondary">Menu</span>
         </span>
       </div>
-      <div className="overlay overlay-clip-path fixed left-0 top-0 z-10 flex h-screen w-screen flex-col bg-green-500 p-2 px-5">
+      <div className="overlay overlay-clip-path bg-menuBg fixed left-0 top-0 z-10 flex h-screen w-screen flex-col p-2 px-5">
         <div>
           <span onClick={toggleMenu} className="cursor-pointer p-2">
             Menu

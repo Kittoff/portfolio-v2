@@ -10,15 +10,22 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
+    "@react-three/drei": "^9.115.0",
+    "@react-three/fiber": "^8.17.10",
     "@studio-freight/react-lenis": "^0.0.47",
+    "@types/nodemailer": "^6.4.16",
+    "axios": "^1.7.7",
     "eslint-plugin-tailwindcss": "^3.17.5",
     "gsap": "^3.12.5",
     "gsap-trial": "^3.12.5",
     "next": "14.2.15",
+    "nodemailer": "^6.9.16",
     "react": "^18",
     "react-dom": "^18",
-    "react-hook-form": "^7.53.1",
-    "split-type": "^0.3.4"
+    "react-hook-form": "^7.53.2",
+    "split-type": "^0.3.4",
+    "three": "^0.170.0",
+    "three-custom-shader-material": "^6.1.1"
   },
   "devDependencies": {
     "eslint": "^8",

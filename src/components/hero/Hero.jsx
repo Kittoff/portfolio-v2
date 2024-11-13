@@ -2,6 +2,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import React, { useRef } from "react";
 import SplitType from "split-type";
+import Experience from "../experiences/3D/Experiment";
 
 const Hero = () => {
   const tl = useRef();
@@ -51,7 +52,7 @@ const Hero = () => {
   );
   return (
     <div ref={container} className="">
-      <main className="texte flex h-screen flex-col text-[70px] md:items-center md:justify-around md:text-8xl lg:flex-row">
+      <main className="texte text-secondary flex h-screen flex-col px-5 text-[70px] md:items-center md:justify-around md:text-8xl lg:flex-row">
         <div className="wrapper invisible flex flex-col items-center gap-8 lg:w-2/3">
           <div>
             <h1 className="job text-3xl text-customGrey opacity-0">
@@ -94,7 +95,9 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <div>coucou</div>
+        <div>
+          <Experience />
+        </div>
       </main>
     </div>
   );

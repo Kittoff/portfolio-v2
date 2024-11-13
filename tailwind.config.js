@@ -47,6 +47,10 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "#252422",
+        secondary: "#fffcf2",
+        menuBg: "#22333b",
+        third: "#eb5e28",
         customGrey: "#686868",
         customBlue: "#223C52",
         customBlack: "#464a58",

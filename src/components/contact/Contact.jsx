@@ -1,19 +1,25 @@
 "use client";
 
+import { sendEmail } from "@/utils/send-email";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import SplitType from "split-type";
+
+// TODO: gérer les erreurs (champs obligatoires vides, etc.)
 
 const Contact = () => {
   const { register, handleSubmit } = useForm();
+  const [hover, setHover] = useState(false);
 
-  function onSubmit(data) {
+  const onSubmit = (data) => {
     sendEmail(data);
-  }
+  };
 
   const container = useRef(null);
   const tl = useRef();
+  const tlSend = useRef();
 
   useGSAP(
     () => {
@@ -41,11 +47,41 @@ const Contact = () => {
     },
     { scope: container },
   );
+  useGSAP(
+    () => {
+      let text1 = SplitType.create(".text1", { splitTypeTypes: "chars" });
+      let text2 = SplitType.create(".text2", { splitTypeTypes: "chars" });
+      tlSend.current = gsap
+        .timeline()
+        .to(text1.chars, {
+          y: -100,
+          stagger: 0.03,
+          ease: "power1.inOut",
+        })
+        .to(
+          text2.chars,
+          {
+            y: -59,
+            stagger: 0.03,
+            ease: "power1.inOut",
+          },
+          0,
+        );
+    },
+    { scope: container },
+  );
 
+  useEffect(() => {
+    if (hover) {
+      tlSend.current.play();
+    } else {
+      tlSend.current.reverse();
+    }
+  }, [hover]);
   return (
     <div ref={container}>
       <form
-        className="wrapper invisible bg-customBlack px-5 pt-8 font-bigilla text-step_3 leading-[1.2] text-white lg:px-20 lg:text-step_4"
+        className="wrapper text-secondary invisible px-5 pt-8 font-bigilla text-step_3 leading-[1.2] lg:px-20 lg:text-step_4"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="overflow-hidden">
@@ -143,10 +179,20 @@ const Contact = () => {
           </div>
         </div>
 
-        <div className="mt-8 overflow-hidden">
-          <button className="animated-input hover:shadow-form rounded-md bg-purple-500 px-8 py-3 text-base font-semibold text-white outline-none">
-            Envoyer
+        <div className="mt-20 flex gap-4 overflow-hidden pb-12 text-5xl">
+          ~
+          <button
+            type="submit"
+            className="flex h-14 w-fit cursor-pointer flex-col overflow-hidden"
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+          >
+            <span className="text1 mb-2"> Envoyer </span>
+            <span className="text2" aria-hidden>
+              Envoyer
+            </span>
           </button>
+          ~
         </div>
       </form>
     </div>

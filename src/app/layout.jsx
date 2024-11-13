@@ -36,7 +36,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${melodrama.variable} ${bigilla.variable}`}>
-      <body className={`${inter.className} bg-[#FAFAFA] antialiased`}>
+      <body className={`${inter.className} bg-primary antialiased`}>
         <Menu />
         <SmoothScrolling>{children}</SmoothScrolling>
         <Footer />

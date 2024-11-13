@@ -3,7 +3,7 @@ import Experiences from "@/components/experiences/Experiences";
 const page = () => {
   return (
     <div>
-      <div className="flex flex-col items-center gap-10 px-5 text-center">
+      <div className="text-secondary flex flex-col items-center gap-10 px-5 text-center">
         <h2 className="pt-5 text-step_h_0">Expériences</h2>
         <p className="max-w-[800px] text-left text-step_p_0">
           J'ai eu la chance de pouvoir participer à des projets de plus en plus
@@ -22,7 +22,7 @@ const page = () => {
           précisément aux attentes. Tous ces projets ont également été
           formateurs sur ces points.
         </p>
-        <p className="text-left text-step_p__1">
+        <p className="mb-20 text-left text-step_p__1">
           Je vous laisse maintenant découvrir une partie des projets sur
           lesquels j'ai pu travailler
         </p>
