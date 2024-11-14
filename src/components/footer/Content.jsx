@@ -5,7 +5,7 @@ import Delimiter from "../Delimiter";
 export default function Content({ pathname }) {
   return (
     <div
-      className={`bg-third absolute bottom-0 flex h-full w-full flex-col justify-between px-6 py-8 text-white md:px-12`}
+      className={`absolute bottom-0 flex h-full w-full flex-col justify-between bg-menuBg px-6 py-8 text-white md:px-12`}
     >
       {pathname !== "/contact" && (
         <>

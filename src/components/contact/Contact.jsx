@@ -1,22 +1,53 @@
 "use client";
 
+import Confetti from "@/utils/Confetti";
 import { sendEmail } from "@/utils/send-email";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import SplitType from "split-type";
-
-// TODO: gérer les erreurs (champs obligatoires vides, etc.)
+import Modal from "./Modal";
+import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
 
 const Contact = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    defaultValues: {
+      name: "",
+      company: "",
+      help: "",
+      email: "",
+      tel: "",
+    },
+  });
   const [hover, setHover] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
-  const onSubmit = (data) => {
-    sendEmail(data);
+  const onSubmit = async (data) => {
+    try {
+      await sendEmail(data, () => {
+        setIsModalOpen(true);
+        setSubmitStatus("success");
+      });
+    } catch (error) {
+      setSubmitStatus("error");
+      console.error(error);
+    }
   };
-
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    if (submitStatus === "success") {
+      reset(); // Réinitialiser le formulaire seulement après la fermeture de la modale de succès
+    }
+    setSubmitStatus(null); // Réinitialiser le statut de soumission
+  };
   const container = useRef(null);
   const tl = useRef();
   const tlSend = useRef();
@@ -43,10 +74,11 @@ const Contact = () => {
             ease: "expo.out",
           },
           "-=1",
-        ); // Start slightly before the text animation ends
+        );
     },
     { scope: container },
   );
+
   useGSAP(
     () => {
       let text1 = SplitType.create(".text1", { splitTypeTypes: "chars" });
@@ -78,10 +110,18 @@ const Contact = () => {
       tlSend.current.reverse();
     }
   }, [hover]);
+
+  const displayError = (field, placeholder) => {
+    if (errors[field]) {
+      return "Veuillez remplir ce champ";
+    }
+    return placeholder;
+  };
+
   return (
     <div ref={container}>
       <form
-        className="wrapper text-secondary invisible px-5 pt-8 font-bigilla text-step_3 leading-[1.2] lg:px-20 lg:text-step_4"
+        className="wrapper invisible px-5 pt-8 font-bigilla text-step_3 leading-[1.2] text-secondary lg:px-20 lg:text-step_4"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="overflow-hidden">
@@ -98,9 +138,10 @@ const Contact = () => {
             <div className="custom_after animated-input">
               <input
                 id="name"
+                name="name"
                 type="text"
-                placeholder="votre nom*"
-                className="w-full bg-transparent placeholder:text-step__1 placeholder:italic focus:outline-none"
+                placeholder={displayError("name", "votre nom*")}
+                className={`w-full bg-transparent placeholder:text-step__1 placeholder:italic ${errors.name && "placeholder:text-red-400"} focus:outline-none`}
                 {...register("name", { required: true })}
               />
             </div>
@@ -135,8 +176,8 @@ const Contact = () => {
               <input
                 id="help"
                 type="text"
-                placeholder="votre message*"
-                className="w-full bg-transparent placeholder:text-step__1 placeholder:italic focus:outline-none"
+                placeholder={displayError("help", "votre message*")}
+                className={`w-full bg-transparent placeholder:text-step__1 placeholder:italic ${errors.help && "placeholder:text-red-400"} focus:outline-none`}
                 {...register("help", { required: true })}
               />
             </div>
@@ -154,8 +195,8 @@ const Contact = () => {
               <input
                 id="email"
                 type="email"
-                placeholder="votre email*"
-                className="w-full bg-transparent placeholder:text-step__1 placeholder:italic focus:outline-none"
+                placeholder={displayError("email", "votre email*")}
+                className={`w-full bg-transparent placeholder:text-step__1 placeholder:italic ${errors.email && "placeholder:text-red-400"} focus:outline-none`}
                 {...register("email", { required: true })}
               />
             </div>
@@ -195,6 +236,11 @@ const Contact = () => {
           ~
         </div>
       </form>
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+        <h2>Message envoyé avec succès!</h2>
+        <p>Merci pour votre message. Je vous recontacterai dès que possible.</p>
+        <Fireworks autorun={{ speed: 3 }} />
+      </Modal>
     </div>
   );
 };

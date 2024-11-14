@@ -30,7 +30,10 @@ export async function POST(request) {
 
   try {
     await transport.sendMail(mailOptions);
-    return NextResponse.json({ message: "Email envoyé avec succès" });
+    return NextResponse.json({
+      message: "Email envoyé avec succès",
+      code: 200,
+    });
   } catch (err) {
     console.error("Erreur lors de l'envoi de l'email :", err);
     return NextResponse.json(

@@ -1,4 +1,4 @@
-export function sendEmail(data) {
+export function sendEmail(data, onSuccess) {
   console.log("data : ", data);
   const apiEndpoint = "/api/email";
 
@@ -12,10 +12,12 @@ export function sendEmail(data) {
   })
     .then((res) => res.json())
     .then((response) => {
-      alert(response.message);
+      console.log("response : ", response);
+      if (response.code === 200) {
+        onSuccess();
+      }
     })
     .catch((err) => {
       console.log("err:", err);
-      alert(err);
     });
 }
