@@ -26,13 +26,12 @@ const Contact = () => {
     },
   });
   const [hover, setHover] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     try {
-      await sendEmail(data, () => {
+      sendEmail(data, () => {
         setIsModalOpen(true);
         setSubmitStatus("success");
       });
@@ -214,26 +213,35 @@ const Contact = () => {
                 type="tel"
                 placeholder="votre numéro"
                 className="w-full bg-transparent placeholder:text-step__1 placeholder:italic focus:outline-none"
-                {...register("tel", { required: false })}
+                {...register("tel", {
+                  required: false,
+                  pattern: {
+                    value: /^\+?[0-9]*$/, // Permet uniquement les chiffres et un '+' au début
+                    message: "Veuillez entrer un numéro valide", // Message d'erreur
+                  },
+                })}
               />
             </div>
           </div>
         </div>
-
-        <div className="mt-20 flex gap-4 overflow-hidden pb-12 text-5xl">
-          ~
-          <button
-            type="submit"
-            className="flex h-14 w-fit cursor-pointer flex-col overflow-hidden"
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
-          >
-            <span className="text1 mb-2"> Envoyer </span>
-            <span className="text2" aria-hidden>
-              Envoyer
-            </span>
-          </button>
-          ~
+        <div className="overflow-hidden">
+          <div className="animated-text">
+            <div className="mt-20 flex gap-4 overflow-hidden pb-12 text-5xl">
+              ~
+              <button
+                type="submit"
+                className="flex h-14 w-fit cursor-pointer flex-col overflow-hidden"
+                onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => setHover(false)}
+              >
+                <span className="text1 mb-2"> Envoyer </span>
+                <span className="text2" aria-hidden>
+                  Envoyer
+                </span>
+              </button>
+              ~
+            </div>
+          </div>
         </div>
       </form>
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
