@@ -1,6 +1,4 @@
 "use client";
-
-import Confetti from "@/utils/Confetti";
 import { sendEmail } from "@/utils/send-email";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -9,6 +7,7 @@ import { useForm } from "react-hook-form";
 import SplitType from "split-type";
 import Modal from "./Modal";
 import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
+import Loader from "@/utils/loader/Loader";
 
 const Contact = () => {
   const {
@@ -27,15 +26,19 @@ const Contact = () => {
   });
   const [hover, setHover] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
   const onSubmit = (data) => {
+    setIsLoading(true);
     try {
       sendEmail(data, () => {
         setIsModalOpen(true);
+        setIsLoading(false);
         setSubmitStatus("success");
       });
     } catch (error) {
+      setIsLoading(false);
       setSubmitStatus("error");
       console.error(error);
     }
@@ -44,8 +47,10 @@ const Contact = () => {
     setIsModalOpen(false);
     if (submitStatus === "success") {
       reset(); // Réinitialiser le formulaire seulement après la fermeture de la modale de succès
+      // setIsLoading(false);
     }
     setSubmitStatus(null); // Réinitialiser le statut de soumission
+    setIsLoading(false);
   };
   const container = useRef(null);
   const tl = useRef();
@@ -111,8 +116,12 @@ const Contact = () => {
   }, [hover]);
 
   const displayError = (field, placeholder) => {
+    console.log("teltel", errors[field]);
     if (errors[field]) {
       return "Veuillez remplir ce champ";
+    }
+    if (errors[field] === "tel") {
+      return "Veuillez entrer un numéro valide";
     }
     return placeholder;
   };
@@ -128,7 +137,6 @@ const Contact = () => {
             <h3>Bonjour Christophe, </h3>
           </div>
         </div>
-
         <div className="gap-6 lg:flex">
           <div className="overflow-hidden">
             <div className="animated-text">mon nom est</div>
@@ -146,7 +154,6 @@ const Contact = () => {
             </div>
           </div>
         </div>
-
         <div className="gap-6 lg:flex">
           <div className="overflow-hidden">
             <div className="animated-text">je travaille chez</div>
@@ -163,7 +170,6 @@ const Contact = () => {
             </div>
           </div>
         </div>
-
         <div className="">
           <div className="overflow-hidden">
             <div className="animated-text">
@@ -182,7 +188,6 @@ const Contact = () => {
             </div>
           </div>
         </div>
-
         <div className="">
           <div className="overflow-hidden">
             <div className="animated-text">
@@ -201,17 +206,18 @@ const Contact = () => {
             </div>
           </div>
         </div>
-
         <div className="gap-6 lg:flex">
           <div className="overflow-hidden">
             <div className="animated-text">ou téléphone au</div>
           </div>
           <div className="relative overflow-hidden lg:w-1/3">
-            <div className="custom_after animated-input">
+            <div
+              className={`custom_after animated-input ${errors.tel && "text-red-400"}`}
+            >
               <input
                 id="tel"
                 type="tel"
-                placeholder="votre numéro"
+                placeholder={displayError("tel", "votre numéro")}
                 className="w-full bg-transparent placeholder:text-step__1 placeholder:italic focus:outline-none"
                 {...register("tel", {
                   required: false,
@@ -222,17 +228,23 @@ const Contact = () => {
                 })}
               />
             </div>
+            {errors.tel && (
+              <span className="text-step_p_1 text-red-400">
+                {errors.tel.message}
+              </span>
+            )}
           </div>
         </div>
-        <div className="overflow-hidden">
-          <div className="animated-text">
+        <div className="mb-28 overflow-hidden pt-4">
+          <div className="animated-text flex flex-col items-center md:flex-row md:gap-11">
             <div className="mt-20 flex gap-4 overflow-hidden pb-12 text-5xl">
               ~
               <button
                 type="submit"
-                className="flex h-14 w-fit cursor-pointer flex-col overflow-hidden"
+                className={`flex h-14 w-fit ${isLoading ? "cursor-progress" : "cursor-pointer"} flex-col overflow-hidden`}
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
+                disabled={isLoading}
               >
                 <span className="text1 mb-2"> Envoyer </span>
                 <span className="text2" aria-hidden>
@@ -241,6 +253,7 @@ const Contact = () => {
               </button>
               ~
             </div>
+            <div className="">{isLoading && <Loader />}</div>
           </div>
         </div>
       </form>

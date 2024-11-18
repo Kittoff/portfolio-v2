@@ -4,13 +4,7 @@ import React, { Suspense, useEffect, useRef, useState } from "react";
 import SplitType from "split-type";
 import { Canvas } from "@react-three/fiber";
 import GlassPortal from "../3d/GlassPortal";
-import {
-  CameraControls,
-  Environment,
-  Float,
-  OrbitControls,
-  Stage,
-} from "@react-three/drei";
+import { Environment, Float, OrbitControls, Stage } from "@react-three/drei";
 
 const Hero = () => {
   const tl = useRef();
@@ -21,7 +15,7 @@ const Hero = () => {
   useEffect(() => {
     setTimeout(() => {
       setIsVisible(true);
-    }, 500);
+    }, 1000);
   }, [isVisible]);
 
   useGSAP(
@@ -112,24 +106,20 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <div
-          className="h-screen w-screen md:w-1/3"
-          // style={{ width: "25vw", height: "100vh" }}
-        >
+        <div className="h-screen w-screen md:w-1/3">
           {isVisible && (
             <Suspense fallback={"loading"}>
               <Canvas
                 camera={{ position: [1.5, 0, 3], fov: 75 }}
                 resize={{ scroll: false }}
               >
-                {/* <color attach="background" args={["#111111"]} /> */}
                 <Environment preset="lobby" />
                 <Stage>
                   <Float
                     speed={1} // Animation speed, defaults to 1
                     rotationIntensity={1} // XYZ rotation intensity, defaults to 1
                     floatIntensity={0.5} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
-                    floatingRange={[0, 0.5]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
+                    floatingRange={[0.2, 0.5]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
                   >
                     <GlassPortal />
                   </Float>
@@ -141,13 +131,6 @@ const Hero = () => {
                   maxAzimuthAngle={Math.PI / 6}
                   minAzimuthAngle={-Math.PI / 6}
                 />
-                {/* <CameraControls
-              distance={4}
-              maxPolarAngle={Math.PI / 1.5} // Limite l'angle vertical (90 degrés)
-              minPolarAngle={0} // Limite l'angle vertical (0 degré)
-              maxAzimuthAngle={Math.PI / 2} // Limite l'angle horizontal (90 degrés)
-              minAzimuthAngle={-Math.PI / 2} // Limite l'angle horizontal (-90 degrés)
-            /> */}
               </Canvas>
             </Suspense>
           )}
