@@ -1,9 +1,8 @@
-import React, { useRef } from "react";
-import { useGLTF } from "@react-three/drei";
+import React from "react";
 import * as THREE from "three";
 import { useLoader } from "@react-three/fiber";
 
-export const Asuka = () => {
+export const Model = () => {
   const texture = useLoader(THREE.TextureLoader, "/test.jpg");
   return (
     <mesh>
@@ -12,5 +11,3 @@ export const Asuka = () => {
     </mesh>
   );
 };
-
-useGLTF.preload("/asuka.glb");

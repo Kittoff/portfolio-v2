@@ -4,31 +4,31 @@ import {
   useTexture,
   useFBO,
 } from "@react-three/drei";
-import { Asuka } from "./Asuka";
+import { Model } from "./Model";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 
 const GlassPortal = () => {
   const normalMap = useTexture("dirt1.png");
   normalMap.wrapS = normalMap.wrapT = 1000;
-  const asukaRef = useRef();
+  const modelRef = useRef();
   const glassref = useRef();
   const buffer = useFBO();
 
   useFrame((state) => {
-    asukaRef.current.visible = true;
+    modelRef.current.visible = true;
     glassref.current.visible = false;
     state.gl.setRenderTarget(buffer);
     state.gl.render(state.scene, state.camera);
     state.gl.setRenderTarget(null);
-    asukaRef.current.visible = false;
+    modelRef.current.visible = false;
     glassref.current.visible = true;
   });
 
   return (
     <>
-      <group ref={asukaRef}>
-        <Asuka position={[0, -1.2, -0.5]} scale={1.4} />
+      <group ref={modelRef}>
+        <Model position={[0, -1.2, -0.5]} scale={1.4} />
       </group>
 
       <RoundedBox
