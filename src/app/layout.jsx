@@ -40,6 +40,8 @@ export const metadata = {
     images: ["/ogImage.png"],
   },
   keywords: [
+    "developer",
+    "développeur",
     "website",
     "Freelance Web Developer",
     "Creative Web Development",
