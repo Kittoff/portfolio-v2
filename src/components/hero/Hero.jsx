@@ -10,13 +10,39 @@ const Hero = () => {
   const tl = useRef();
   const name = useRef();
   const container = useRef();
+  const [enableScroll, setEnableScroll] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
+    // Initialement empêcher le scroll
+    window.scrollTo(0, 0);
+    gsap.set("body", { overflow: "hidden" });
+    document.body.setAttribute("data-lenis-prevent", "true");
+    document.body.setAttribute("data-lenis-stop", "true");
+  }, []);
+
+  useEffect(() => {
+    // Afficher le contenu après un délai
+    const timer = setTimeout(() => {
       setIsVisible(true);
     }, 1000);
-  }, [isVisible]);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Utiliser un useEffect pour gérer l'état du scroll
+  useEffect(() => {
+    if (enableScroll) {
+      gsap.set("body", { overflow: "auto" });
+    } else {
+      gsap.set("body", { overflow: "hidden" });
+    }
+  }, [enableScroll]);
+
+  const unlockScroll = () => {
+    setEnableScroll(true); // Activer le scroll ici
+    document.body.removeAttribute("data-lenis-prevent");
+    document.body.removeAttribute("data-lenis-stop");
+  };
 
   useGSAP(
     () => {
@@ -55,14 +81,20 @@ const Hero = () => {
               stagger: 0.16,
             },
             "<-0.4",
-          );
+          )
+          .eventCallback("onComplete", unlockScroll); // Appeler unlockScroll une fois les animations terminées
       }
     },
     { scope: container },
   );
 
   return (
-    <div ref={container} className="">
+    <div
+      // data-lenis-stop={false}
+      // data-lenis-prevent={false}
+      ref={container}
+      className=""
+    >
       <main className="texte flex flex-col px-5 text-[70px] text-secondary md:items-center md:justify-around md:text-8xl lg:h-screen lg:flex-row">
         <div className="wrapper invisible flex flex-col items-center gap-8 lg:w-2/3">
           <div>
@@ -116,17 +148,17 @@ const Hero = () => {
                 <Environment preset="lobby" />
                 <Stage>
                   <Float
-                    speed={1} // Animation speed, defaults to 1
-                    rotationIntensity={1} // XYZ rotation intensity, defaults to 1
-                    floatIntensity={0.5} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
-                    floatingRange={[0.2, 0.5]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
+                    speed={1}
+                    rotationIntensity={1}
+                    floatIntensity={0.5}
+                    floatingRange={[0.2, 0.5]}
                   >
                     <GlassPortal />
                   </Float>
                 </Stage>
                 <OrbitControls
                   enableZoom={false}
-                  maxPolarAngle={Math.PI / 1.7} // Limite l'angle vertical (90 degrés)
+                  maxPolarAngle={Math.PI / 1.7}
                   minPolarAngle={Math.PI / 3.5}
                   maxAzimuthAngle={Math.PI / 6}
                   minAzimuthAngle={-Math.PI / 6}

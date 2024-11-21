@@ -16,9 +16,11 @@ const Menu = () => {
   const container = useRef(null);
   const tl = useRef();
   const [isOpen, setIsOpen] = useState(false);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
   useGSAP(
     () => {
       gsap.set(".holder", { y: 120 });
@@ -45,37 +47,43 @@ const Menu = () => {
   useEffect(() => {
     if (isOpen) {
       tl.current.play();
+      gsap.set("body", { overflow: "hidden" });
     } else {
       tl.current.reverse();
+      gsap.set("body", { overflow: "auto" });
     }
   }, [isOpen]);
+
   return (
-    <div ref={container} className="text-secondary px-5 py-2 text-right">
+    <div
+      data-lenis-stop
+      data-lenis-prevent
+      ref={container}
+      className="fixed z-[999] w-full px-5 py-2 text-right text-secondary"
+    >
       <div>
         <span onClick={toggleMenu} className="cursor-pointer p-2">
           <span className="text-secondary">Menu</span>
         </span>
       </div>
-      <div className="overlay overlay-clip-path bg-menuBg fixed left-0 top-0 z-10 flex h-screen w-screen flex-col p-2 px-5">
+      <div className="overlay overlay-clip-path fixed left-0 top-0 z-10 flex h-screen w-screen flex-col bg-menuBg p-2 px-5">
         <div>
           <span onClick={toggleMenu} className="cursor-pointer p-2">
             Menu
           </span>
         </div>
         <div className="flex flex-col items-center justify-center gap-5">
-          {menuLinks.map((link) => {
-            return (
-              <div
-                className="link-clip-path text-step_h_0"
-                onClick={toggleMenu}
-                key={link.path}
-              >
-                <div className="holder relative">
-                  <Link href={link.path}>{link.label}</Link>
-                </div>
+          {menuLinks.map((link) => (
+            <div
+              className="link-clip-path text-step_h_0"
+              onClick={toggleMenu}
+              key={link.path}
+            >
+              <div className="holder relative">
+                <Link href={link.path}>{link.label}</Link>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </div>

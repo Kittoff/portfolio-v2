@@ -3,6 +3,7 @@ import {
   RoundedBox,
   useTexture,
   useFBO,
+  Html,
 } from "@react-three/drei";
 import { Model } from "./Model";
 import { useRef } from "react";
@@ -31,21 +32,34 @@ const GlassPortal = () => {
         <Model position={[0, -1.2, -0.5]} scale={1.4} />
       </group>
 
-      <RoundedBox
-        ref={glassref}
-        position={[0, 0, 0.8]}
-        args={[1.5, 2, 0.12]}
-        radius={0.03}
-      >
-        <MeshTransmissionMaterial
-          transmission={1}
-          roughness={0.1}
-          thickness={0.1}
-          normalMap={normalMap}
-          normalScale={[0.4, 0.4]}
-          buffer={buffer.texture}
-        />
-      </RoundedBox>
+      <group>
+        <mesh>
+          <RoundedBox
+            ref={glassref}
+            position={[0, 0, 0.8]}
+            args={[1.5, 2, 0.12]}
+            radius={0.03}
+          >
+            <MeshTransmissionMaterial
+              transmission={1}
+              roughness={0.1}
+              thickness={0.1}
+              normalMap={normalMap}
+              normalScale={[0.4, 0.4]}
+              buffer={buffer.texture}
+            />
+            <Html
+              zIndexRange={[0, 10]}
+              transform={true}
+              position={[-0.45, -0.7, 0]}
+              scale={0.05}
+              className="z-0 select-none"
+            >
+              Brisons <br /> la glace
+            </Html>
+          </RoundedBox>
+        </mesh>
+      </group>
     </>
   );
 };
