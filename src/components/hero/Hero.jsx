@@ -101,7 +101,7 @@ const Hero = () => {
       <main className="texte flex flex-col px-5 text-[70px] text-secondary md:items-center md:justify-around md:text-8xl lg:h-screen lg:flex-row">
         <div className="wrapper invisible flex flex-col items-center gap-8 lg:w-2/3">
           <div>
-            <h1 className="job text-3xl text-customGrey opacity-0">
+            <h1 className="job text-step_1 text-customGrey opacity-0">
               Freelance Developer
             </h1>
           </div>
@@ -138,7 +138,7 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <div className="h-screen w-screen md:w-1/3">
+        <div className="h-[400px] md:w-1/3">
           {isVisible && (
             <Suspense fallback={"loading"}>
               <Canvas

@@ -79,7 +79,9 @@ export default function RootLayout({ children, params: { locale } }) {
           locale={locale}
           namespaces={["menu", "footer"]}
         >
-          <Menu />
+          <div className="pb-14">
+            <Menu />
+          </div>
           <SmoothScrolling>{children}</SmoothScrolling>
           <Footer />
         </TranslationsProvider>
