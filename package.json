@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "i18nexus pull && next dev",
+    "build": "i18nexus pull && next build",
+    "start": "i18nexus pull && next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -35,6 +35,7 @@
   "devDependencies": {
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
+    "i18nexus-cli": "^3.5.0",
     "postcss": "^8",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
