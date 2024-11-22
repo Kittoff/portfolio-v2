@@ -1,9 +1,13 @@
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Menu from "../components/header/Menu";
 import SmoothScrolling from "@/components/SmoothScrolling";
+import Menu from "@/components/header/Menu";
 import Footer from "@/components/footer/Footer";
+import i18nConfig from "@/i18nConfig";
+import { dir } from "i18next";
+import TranslationsProvider from "@/components/TranslationProvider";
+import initTranslations from "../i18n";
 
 const bigilla = localFont({
   src: "./fonts/Bigilla.otf",
@@ -57,13 +61,28 @@ export const metadata = {
   ],
 };
 
-export default function RootLayout({ children }) {
+export function generateStaticParams() {
+  return i18nConfig.locales.map((locale) => ({ locale }));
+}
+
+export default function RootLayout({ children, params: { locale } }) {
+  const { resources } = initTranslations(locale, ["menu", "footer"]);
   return (
-    <html lang="en" className={`${melodrama.variable} ${bigilla.variable}`}>
+    <html
+      lang={locale}
+      dir={dir(locale)}
+      className={`${melodrama.variable} ${bigilla.variable}`}
+    >
       <body className={`${inter.className} bg-primary antialiased`}>
-        <Menu />
-        <SmoothScrolling>{children}</SmoothScrolling>
-        <Footer />
+        <TranslationsProvider
+          resources={resources}
+          locale={locale}
+          namespaces={["menu", "footer"]}
+        >
+          <Menu />
+          <SmoothScrolling>{children}</SmoothScrolling>
+          <Footer />
+        </TranslationsProvider>
       </body>
     </html>
   );

@@ -1,3 +1,4 @@
+"use client";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import React, { Suspense, useEffect, useRef, useState } from "react";
@@ -5,8 +6,10 @@ import SplitType from "split-type";
 import { Canvas } from "@react-three/fiber";
 import GlassPortal from "../3d/GlassPortal";
 import { Environment, Float, OrbitControls, Stage } from "@react-three/drei";
+import { useTranslation } from "react-i18next";
 
 const Hero = () => {
+  const { t } = useTranslation();
   const tl = useRef();
   const name = useRef();
   const container = useRef();
@@ -108,12 +111,12 @@ const Hero = () => {
           >
             <div className="link-clip-path">
               <div className="holder relative">
-                <span>Christophe</span>
+                <span>{t("hero_name")}</span>
               </div>
             </div>
             <div className="link-clip-path">
               <div className="holder relative">
-                <span>LOZANO</span>
+                <span>{t("hero_lastname")}</span>
               </div>
             </div>
           </div>
@@ -122,18 +125,15 @@ const Hero = () => {
               <div className="join flex gap-2">
                 <div className="h-4 w-4 rounded-full border-3 border-green-600 bg-green-400" />
                 <div className="text-xs text-customGrey">
-                  Disponible pour projets
+                  {t("hero_available")}
                 </div>
               </div>
 
               <p className="join text-xs md:w-1/2 lg:w-2/3">
-                Développeur Front-End passioné par le Creative Dev et avide
-                d'apprendre. J'aime relever des défis, partager avec les autres,
-                et voir la finalité d'un projet qui satisfait à la fois le
-                client mais aussi moi-même.
+                {t("hero_intro")}
               </p>
               <div className="join w-full rounded-bl-[30px] rounded-br-[10px] rounded-tl-[10px] rounded-tr-[30px] bg-customBlue py-3 text-center text-xs text-white md:w-1/2 lg:w-2/3">
-                Rejoignons-nous
+                {t("hero_join")}
               </div>
             </div>
           </div>

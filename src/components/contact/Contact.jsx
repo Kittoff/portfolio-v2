@@ -8,8 +8,10 @@ import SplitType from "split-type";
 import Modal from "./Modal";
 import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
 import Loader from "@/utils/loader/Loader";
+import { useTranslation } from "react-i18next";
 
 const Contact = () => {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -118,10 +120,10 @@ const Contact = () => {
   const displayError = (field, placeholder) => {
     console.log("teltel", errors[field]);
     if (errors[field]) {
-      return "Veuillez remplir ce champ";
+      return t("contact_empty_field");
     }
     if (errors[field] === "tel") {
-      return "Veuillez entrer un numéro valide";
+      return t("contact_tel_error");
     }
     return placeholder;
   };
@@ -134,12 +136,12 @@ const Contact = () => {
       >
         <div className="overflow-hidden">
           <div className="animated-text">
-            <h3>Bonjour Christophe, </h3>
+            <h3>{t("contact_hello")}</h3>
           </div>
         </div>
         <div className="gap-6 lg:flex">
           <div className="overflow-hidden">
-            <div className="animated-text">mon nom est</div>
+            <div className="animated-text">{t("contact_name")}</div>
           </div>
           <div className="relative overflow-hidden lg:w-1/3">
             <div className="custom_after animated-input">
@@ -147,7 +149,10 @@ const Contact = () => {
                 id="name"
                 name="name"
                 type="text"
-                placeholder={displayError("name", "votre nom*")}
+                placeholder={displayError(
+                  "name",
+                  t("contact_name_placeholder"),
+                )}
                 className={`w-full bg-transparent placeholder:text-step__1 placeholder:italic ${errors.name && "placeholder:text-red-400"} focus:outline-none`}
                 {...register("name", { required: true })}
               />
@@ -156,14 +161,14 @@ const Contact = () => {
         </div>
         <div className="gap-6 lg:flex">
           <div className="overflow-hidden">
-            <div className="animated-text">je travaille chez</div>
+            <div className="animated-text">{t("contact_company")}</div>
           </div>
           <div className="relative overflow-hidden lg:w-1/3">
             <div className="custom_after animated-input w-full">
               <input
                 id="company"
                 type="text"
-                placeholder="votre entreprise"
+                placeholder={t("contact_company_placeholder")}
                 className="w-full bg-transparent placeholder:text-step__1 placeholder:italic focus:outline-none"
                 {...register("company", { required: false })}
               />
@@ -172,16 +177,17 @@ const Contact = () => {
         </div>
         <div className="">
           <div className="overflow-hidden">
-            <div className="animated-text">
-              est-ce que tu pourrais m'aider à
-            </div>
+            <div className="animated-text">{t("contact_help")}</div>
           </div>
           <div className="relative overflow-hidden">
             <div className="custom_after animated-input">
               <input
                 id="help"
                 type="text"
-                placeholder={displayError("help", "votre message*")}
+                placeholder={displayError(
+                  "help",
+                  t("contact_help_placeholder"),
+                )}
                 className={`w-full bg-transparent placeholder:text-step__1 placeholder:italic ${errors.help && "placeholder:text-red-400"} focus:outline-none`}
                 {...register("help", { required: true })}
               />
@@ -190,16 +196,17 @@ const Contact = () => {
         </div>
         <div className="">
           <div className="overflow-hidden">
-            <div className="animated-text">
-              Tu peux me contacter par e-mail à
-            </div>
+            <div className="animated-text">{t("contact_mail")}</div>
           </div>
           <div className="relative overflow-hidden">
             <div className="custom_after animated-input">
               <input
                 id="email"
                 type="email"
-                placeholder={displayError("email", "votre email*")}
+                placeholder={displayError(
+                  "email",
+                  t("contact_mail_placeholder"),
+                )}
                 className={`w-full bg-transparent placeholder:text-step__1 placeholder:italic ${errors.email && "placeholder:text-red-400"} focus:outline-none`}
                 {...register("email", { required: true })}
               />
@@ -208,7 +215,7 @@ const Contact = () => {
         </div>
         <div className="gap-6 lg:flex">
           <div className="overflow-hidden">
-            <div className="animated-text">ou téléphone au</div>
+            <div className="animated-text">{t("contact_tel")}</div>
           </div>
           <div className="relative overflow-hidden lg:w-1/3">
             <div
@@ -217,13 +224,13 @@ const Contact = () => {
               <input
                 id="tel"
                 type="tel"
-                placeholder={displayError("tel", "votre numéro")}
+                placeholder={displayError("tel", t("contact_tel_placeholder"))}
                 className="w-full bg-transparent placeholder:text-step__1 placeholder:italic focus:outline-none"
                 {...register("tel", {
                   required: false,
                   pattern: {
                     value: /^\+?[0-9]*$/, // Permet uniquement les chiffres et un '+' au début
-                    message: "Veuillez entrer un numéro valide", // Message d'erreur
+                    message: t("contact_tel_error"), // Message d'erreur
                   },
                 })}
               />
@@ -246,9 +253,9 @@ const Contact = () => {
                 onMouseLeave={() => setHover(false)}
                 disabled={isLoading}
               >
-                <span className="text1 mb-2"> Envoyer </span>
+                <span className="text1 mb-2"> {t("contact_send")} </span>
                 <span className="text2" aria-hidden>
-                  Envoyer
+                  {t("contact_send")}
                 </span>
               </button>
               ~
@@ -258,8 +265,8 @@ const Contact = () => {
         </div>
       </form>
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <h2>Message envoyé avec succès!</h2>
-        <p>Merci pour votre message. Je vous recontacterai dès que possible.</p>
+        <h2>{t("contact_success_title")}</h2>
+        <p>{t("contact_success_text")}</p>
         <Fireworks autorun={{ speed: 3 }} />
       </Modal>
     </div>

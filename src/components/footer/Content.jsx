@@ -1,6 +1,7 @@
 import React from "react";
 import Time from "./Time";
 import Delimiter from "../Delimiter";
+import { useTranslation } from "react-i18next";
 
 export default function Content({ pathname }) {
   return (
@@ -18,7 +19,7 @@ export default function Content({ pathname }) {
   );
 }
 
-const Section1 = () => {
+const Section1 = ({ text }) => {
   return (
     <div className="lg:px-40">
       <Nav />
@@ -61,15 +62,16 @@ const Section2 = () => {
   );
 };
 
-const Nav = () => {
+const Nav = ({}) => {
+  const { t } = useTranslation();
   return (
     <div className="shrink-1 mt-28 flex gap-20">
       <h2 className="flex flex-col items-start text-step_h_0">
         <div className="flex items-center gap-1">
           <div className="h-8 w-8 rounded-full bg-red-300" />
-          Travaillons
+          {t("footer:footer_work")}
         </div>
-        <div>ensemble</div>
+        <div>{t("footer:footer_together")}</div>
       </h2>
     </div>
   );

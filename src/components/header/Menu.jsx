@@ -4,15 +4,10 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
-
-const menuLinks = [
-  { path: "/", label: "Home" },
-  { path: "/about", label: "Mon histoire" },
-  { path: "/experience", label: "Expériences" },
-  { path: "/contact", label: "Contact" },
-];
+import { useTranslation } from "react-i18next";
 
 const Menu = () => {
+  const { t } = useTranslation();
   const container = useRef(null);
   const tl = useRef();
   const [isOpen, setIsOpen] = useState(false);
@@ -20,6 +15,12 @@ const Menu = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+  const menuLinks = [
+    { path: "/", label: t("menu_home") },
+    { path: "/about", label: t("menu_about") },
+    { path: "/experience", label: t("menu_experiences") },
+    { path: "/contact", label: t("menu_contact") },
+  ];
 
   useGSAP(
     () => {

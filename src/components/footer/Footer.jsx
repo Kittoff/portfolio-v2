@@ -2,10 +2,12 @@
 import React, { useEffect, useState } from "react";
 import Content from "./Content";
 import { usePathname } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
   const pathname = usePathname();
   const [currentPath, setCurrentPath] = useState("/");
+  const { t } = useTranslation();
 
   useEffect(() => {
     setCurrentPath(pathname);
