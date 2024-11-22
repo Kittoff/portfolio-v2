@@ -32,34 +32,37 @@ const inter = Inter({
   display: "swap",
 });
 
-export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL),
-  title: {
-    default: "Christophe Lozano • Freelance Developer",
-    // template,
-  },
-  openGraph: {
-    description:
-      "Christophe Lozano est un développeur qui se spécialise dans l'animation et interraction. En tant qu'indépendant, il travaille avec des entreprises, agences, startups et particuliers à travers le monde.",
-    images: ["/ogImage.png"],
-  },
-  keywords: [
-    "developer",
-    "développeur",
-    "website",
-    "Freelance Web Developer",
-    "Creative Web Development",
-    "Website Creation",
-    "Full-Stack Developer",
-    "Custom Web Solutions",
-    "JavaScript Expert",
-    "Web Development Consultant",
-    "Freelance Developer Portfolio",
-    "SEO Optimization for Websites",
-    "Front-End Development",
-    "Creative Web Design and Development",
-  ],
-};
+export async function generateMetadata({ params: { locale } }) {
+  const { t } = await initTranslations(locale, ["metadata"]);
+
+  return {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL),
+    title: {
+      default: "Christophe Lozano • Freelance Developer",
+      // template,
+    },
+    openGraph: {
+      description: t("metadata_description"),
+      images: ["/ogImage.png"],
+    },
+    keywords: [
+      "developer",
+      "développeur",
+      "website",
+      "Freelance Web Developer",
+      "Creative Web Development",
+      "Website Creation",
+      "Full-Stack Developer",
+      "Custom Web Solutions",
+      "JavaScript Expert",
+      "Web Development Consultant",
+      "Freelance Developer Portfolio",
+      "SEO Optimization for Websites",
+      "Front-End Development",
+      "Creative Web Design and Development",
+    ],
+  };
+}
 
 export function generateStaticParams() {
   return i18nConfig.locales.map((locale) => ({ locale }));
