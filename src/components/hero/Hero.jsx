@@ -55,7 +55,7 @@ const Hero = () => {
         let split = SplitType.create(".name", { splitTypeTypes: "chars" });
 
         // Set initial state for characters
-        gsap.set(split.chars, { y: "100%" });
+        gsap.set(split.chars, { y: "105%" });
         gsap.set(".job", { y: 10 });
 
         tl.current = gsap
@@ -138,7 +138,7 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <div className="h-[400px] md:w-1/3">
+        <div className="h-[400px] md:w-1/3 lg:h-screen">
           {isVisible && (
             <Suspense fallback={"loading"}>
               <Canvas
