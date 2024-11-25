@@ -5,7 +5,13 @@ import React, { Suspense, useEffect, useRef, useState } from "react";
 import SplitType from "split-type";
 import { Canvas } from "@react-three/fiber";
 import GlassPortal from "../3d/GlassPortal";
-import { Environment, Float, OrbitControls, Stage } from "@react-three/drei";
+import {
+  Environment,
+  Float,
+  OrbitControls,
+  PresentationControls,
+  Stage,
+} from "@react-three/drei";
 import { useTranslation } from "react-i18next";
 
 const Hero = () => {
@@ -91,6 +97,10 @@ const Hero = () => {
     { scope: container },
   );
 
+  const join = () => {
+    window.location = "mailto:xyz@yourapplicationdomain.com";
+  };
+
   return (
     <div
       // data-lenis-stop={false}
@@ -132,9 +142,12 @@ const Hero = () => {
               <p className="join text-xs md:w-1/2 lg:w-2/3">
                 {t("hero_intro")}
               </p>
-              <div className="join w-full rounded-bl-[30px] rounded-br-[10px] rounded-tl-[10px] rounded-tr-[30px] bg-customBlue py-3 text-center text-xs text-white md:w-1/2 lg:w-2/3">
-                {t("hero_join")}
-              </div>
+              <a
+                className="join w-full cursor-pointer rounded-bl-[30px] rounded-br-[10px] rounded-tl-[10px] rounded-tr-[30px] bg-customBlue py-3 text-center text-xs text-white md:w-1/2 lg:w-2/3"
+                href="mailto:"
+              >
+                <button type="button">{t("hero_join")}</button>
+              </a>
             </div>
           </div>
         </div>
@@ -153,16 +166,23 @@ const Hero = () => {
                     floatIntensity={0.5}
                     floatingRange={[0.2, 0.5]}
                   >
-                    <GlassPortal />
+                    <PresentationControls
+                      global={false}
+                      // rotation={[0, 0.3, 0]}
+                      polar={[-Math.PI / 9, Math.PI / 9]}
+                      azimuth={[-Math.PI / 12, Math.PI / 4]}
+                    >
+                      <GlassPortal />
+                    </PresentationControls>
                   </Float>
                 </Stage>
-                <OrbitControls
+                {/* <OrbitControls
                   enableZoom={false}
                   maxPolarAngle={Math.PI / 1.7}
                   minPolarAngle={Math.PI / 3.5}
                   maxAzimuthAngle={Math.PI / 6}
                   minAzimuthAngle={-Math.PI / 6}
-                />
+                /> */}
               </Canvas>
             </Suspense>
           )}

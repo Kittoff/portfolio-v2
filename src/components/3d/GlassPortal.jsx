@@ -39,6 +39,7 @@ const GlassPortal = () => {
             position={[0, 0, 0.8]}
             args={[1.5, 2, 0.12]}
             radius={0.03}
+            scale={0.99}
           >
             <MeshTransmissionMaterial
               transmission={1}

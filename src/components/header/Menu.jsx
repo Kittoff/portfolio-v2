@@ -60,7 +60,7 @@ const Menu = () => {
       data-lenis-stop
       data-lenis-prevent
       ref={container}
-      className="fixed z-[999] w-full px-5 py-2 text-right text-secondary"
+      className="text-menuText fixed z-[999] w-full px-5 py-2 text-right"
     >
       <div>
         <span onClick={toggleMenu} className="cursor-pointer p-2">

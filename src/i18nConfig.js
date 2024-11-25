@@ -1,6 +1,6 @@
 const i18nConfig = {
   locales: ["fr", "en", "ja"],
-  defaultLocale: "fr",
+  defaultLocale: "en",
 };
 
 module.exports = i18nConfig;
