@@ -1,5 +1,6 @@
 "use client";
 
+import { useMenuContext } from "@/utils/MenuContext";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Link from "next/link";
@@ -11,10 +12,12 @@ const Menu = () => {
   const container = useRef(null);
   const tl = useRef();
   const [isOpen, setIsOpen] = useState(false);
+  const { setIsMenuClosedCompletely } = useMenuContext();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
   const menuLinks = [
     { path: "/", label: t("menu_home") },
     { path: "/about", label: t("menu_about") },
@@ -26,9 +29,7 @@ const Menu = () => {
     () => {
       gsap.set(".holder", { y: 120 });
       tl.current = gsap
-        .timeline({
-          paused: true,
-        })
+        .timeline({ paused: true })
         .to(".overlay", {
           duration: 1.25,
           clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
@@ -49,18 +50,22 @@ const Menu = () => {
     if (isOpen) {
       tl.current.play();
       gsap.set("body", { overflow: "hidden" });
+      setIsMenuClosedCompletely(false);
     } else {
-      tl.current.reverse();
+      tl.current.reverse().then(() => {
+        console.log("Menu fermé complètement");
+        setIsMenuClosedCompletely(true);
+      });
       gsap.set("body", { overflow: "auto" });
     }
-  }, [isOpen]);
+  }, [isOpen, setIsMenuClosedCompletely]);
 
   return (
     <div
       data-lenis-stop
       data-lenis-prevent
       ref={container}
-      className="text-menuText fixed z-[999] w-full px-5 py-2 text-right"
+      className="fixed z-[999] w-full px-5 py-2 text-right text-menuText"
     >
       <div>
         <span onClick={toggleMenu} className="cursor-pointer p-2">

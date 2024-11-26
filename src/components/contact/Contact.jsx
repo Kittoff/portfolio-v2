@@ -118,7 +118,6 @@ const Contact = () => {
   }, [hover]);
 
   const displayError = (field, placeholder) => {
-    console.log("teltel", errors[field]);
     if (errors[field]) {
       return t("contact_empty_field");
     }
