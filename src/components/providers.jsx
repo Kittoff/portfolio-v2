@@ -81,11 +81,11 @@ export function Providers({ children }) {
 
       <div
         ref={firstLayer}
-        className="fixed inset-0 z-50 translate-y-full bg-red-300"
+        className="fixed inset-0 z-50 translate-y-full bg-[#69a4b4]"
       />
       <div
         ref={secondLayer}
-        className="fixed inset-0 z-50 translate-y-full bg-blue-500"
+        className="fixed inset-0 z-50 translate-y-full bg-[#5a729e]"
       />
     </TransitionRouter>
   );

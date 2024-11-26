@@ -5,11 +5,13 @@ import gsap from "gsap";
 import React, { useRef } from "react";
 import SplitType from "split-type";
 import { useTranslation } from "react-i18next";
+import useScrollControl from "@/utils/useScrollControl";
 
 const About = () => {
   const container = useRef();
   const tl = useRef();
   const { t } = useTranslation();
+  const { unlockScroll } = useScrollControl();
   const history = [
     {
       text: t("about_1988_text"),
@@ -57,7 +59,8 @@ const About = () => {
             ease: "power4.inOut",
           },
           "+0.6 ",
-        );
+        )
+        .eventCallback("onComplete", unlockScroll); // Appeler unlockScroll une fois les animations terminées
     },
     { scope: container },
   );

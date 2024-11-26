@@ -13,22 +13,17 @@ import {
   Stage,
 } from "@react-three/drei";
 import { useTranslation } from "react-i18next";
+import useScrollControl from "@/utils/useScrollControl";
 
 const Hero = () => {
   const { t } = useTranslation();
   const tl = useRef();
   const name = useRef();
   const container = useRef();
-  const [enableScroll, setEnableScroll] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    // Initialement empêcher le scroll
-    window.scrollTo(0, 0);
-    gsap.set("body", { overflow: "hidden" });
-    document.body.setAttribute("data-lenis-prevent", "true");
-    document.body.setAttribute("data-lenis-stop", "true");
-  }, []);
+  // Utiliser le custom hook pour contrôler le scroll
+  const { unlockScroll } = useScrollControl();
 
   useEffect(() => {
     // Afficher le contenu après un délai
@@ -37,21 +32,6 @@ const Hero = () => {
     }, 1000);
     return () => clearTimeout(timer);
   }, []);
-
-  // Utiliser un useEffect pour gérer l'état du scroll
-  useEffect(() => {
-    if (enableScroll) {
-      gsap.set("body", { overflow: "auto" });
-    } else {
-      gsap.set("body", { overflow: "hidden" });
-    }
-  }, [enableScroll]);
-
-  const unlockScroll = () => {
-    setEnableScroll(true); // Activer le scroll ici
-    document.body.removeAttribute("data-lenis-prevent");
-    document.body.removeAttribute("data-lenis-stop");
-  };
 
   useGSAP(
     () => {
@@ -65,7 +45,7 @@ const Hero = () => {
         gsap.set(".job", { y: 10 });
 
         tl.current = gsap
-          .timeline({ delay: 0.3 })
+          .timeline()
           .to(split.chars, {
             y: 0,
             duration: 1.3,
@@ -102,12 +82,7 @@ const Hero = () => {
   };
 
   return (
-    <div
-      // data-lenis-stop={false}
-      // data-lenis-prevent={false}
-      ref={container}
-      className=""
-    >
+    <div ref={container} className="">
       <main className="texte flex flex-col px-5 text-[70px] text-secondary md:items-center md:justify-around md:text-8xl lg:h-screen lg:flex-row">
         <div className="wrapper invisible flex flex-col items-center gap-8 lg:w-2/3">
           <div>
@@ -168,7 +143,6 @@ const Hero = () => {
                   >
                     <PresentationControls
                       global={false}
-                      // rotation={[0, 0.3, 0]}
                       polar={[-Math.PI / 9, Math.PI / 9]}
                       azimuth={[-Math.PI / 12, Math.PI / 4]}
                     >
@@ -176,13 +150,6 @@ const Hero = () => {
                     </PresentationControls>
                   </Float>
                 </Stage>
-                {/* <OrbitControls
-                  enableZoom={false}
-                  maxPolarAngle={Math.PI / 1.7}
-                  minPolarAngle={Math.PI / 3.5}
-                  maxAzimuthAngle={Math.PI / 6}
-                  minAzimuthAngle={-Math.PI / 6}
-                /> */}
               </Canvas>
             </Suspense>
           )}
