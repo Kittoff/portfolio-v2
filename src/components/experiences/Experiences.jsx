@@ -10,7 +10,7 @@ const Experience = () => {
   const { t } = useTranslation();
   const sections = [
     {
-      bgColor: "bg-[#dfd6cf]",
+      bgColor: "bg-[#4b565d]",
       id: "01",
       offset: "0rem",
       imgSrc: "img/1.png",
@@ -20,7 +20,7 @@ const Experience = () => {
       highlightWord: ["Airbus"],
     },
     {
-      bgColor: "bg-[#c5c3c0]",
+      bgColor: "bg-[#84a5a4]",
       id: "02",
       offset: "2rem",
       imgSrc: "img/2.png",
@@ -30,7 +30,7 @@ const Experience = () => {
       highlightWord: ["Safran"],
     },
     {
-      bgColor: "bg-[#dfd6cf]",
+      bgColor: "bg-[#4b565d]",
       id: "03",
       offset: "4rem",
       imgSrc: "img/3.png",
@@ -40,7 +40,7 @@ const Experience = () => {
       highlightWord: ["Capgemini"],
     },
     {
-      bgColor: "bg-[#c5c3c0]",
+      bgColor: "bg-[#84a5a4]",
       id: "04",
       offset: "6rem",
       imgSrc: "img/4.png",
@@ -50,7 +50,7 @@ const Experience = () => {
       highlightWord: ["Airbus"],
     },
     {
-      bgColor: "bg-[#dfd6cf]",
+      bgColor: "bg-[#4b565d]",
       id: "05",
       offset: "8rem",
       imgSrc: "img/5.png",
