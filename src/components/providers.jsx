@@ -1,9 +1,8 @@
 "use client";
 
-import { useRef, useCallback, useEffect } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap";
 import { TransitionRouter } from "next-transition-router";
-import Menu from "@/components/header/Menu";
 import { useMenuContext } from "@/utils/MenuContext";
 
 export function Providers({ children }) {
@@ -14,9 +13,7 @@ export function Providers({ children }) {
   return (
     <TransitionRouter
       auto={true}
-      leave={(next, from, to) => {
-        console.log({ from, to });
-
+      leave={(next) => {
         const tl = gsap
           .timeline({
             onComplete: next,
@@ -76,8 +73,6 @@ export function Providers({ children }) {
       }}
     >
       <main>{children}</main>
-
-      <Menu />
 
       <div
         ref={firstLayer}

@@ -1,5 +1,4 @@
 export function sendEmail(data, onSuccess) {
-  console.log("data : ", data);
   const apiEndpoint = "/api/email";
 
   fetch(apiEndpoint, {
@@ -12,7 +11,6 @@ export function sendEmail(data, onSuccess) {
   })
     .then((res) => res.json())
     .then((response) => {
-      console.log("response : ", response);
       if (response.code === 200) {
         onSuccess();
       }

@@ -53,7 +53,6 @@ const Menu = () => {
       setIsMenuClosedCompletely(false);
     } else {
       tl.current.reverse().then(() => {
-        console.log("Menu fermé complètement");
         setIsMenuClosedCompletely(true);
       });
       gsap.set("body", { overflow: "auto" });
