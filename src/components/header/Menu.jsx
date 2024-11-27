@@ -1,6 +1,5 @@
 "use client";
 
-import { useMenuContext } from "@/utils/MenuContext";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Link from "next/link";
@@ -12,7 +11,6 @@ const Menu = () => {
   const container = useRef(null);
   const tl = useRef();
   const [isOpen, setIsOpen] = useState(false);
-  const { setIsMenuClosedCompletely } = useMenuContext();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -50,14 +48,13 @@ const Menu = () => {
     if (isOpen) {
       tl.current.play();
       gsap.set("body", { overflow: "hidden" });
-      setIsMenuClosedCompletely(false);
     } else {
-      tl.current.reverse().then(() => {
-        setIsMenuClosedCompletely(true);
-      });
+      tl.current.reverse();
+      // .then(() => {
+      // });
       gsap.set("body", { overflow: "auto" });
     }
-  }, [isOpen, setIsMenuClosedCompletely]);
+  }, [isOpen]);
 
   return (
     <div

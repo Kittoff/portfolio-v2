@@ -8,8 +8,7 @@ import i18nConfig from "@/i18nConfig";
 import { dir } from "i18next";
 import TranslationsProvider from "@/components/TranslationProvider";
 import initTranslations from "../i18n";
-import { Providers } from "@/components/providers";
-import { MenuProvider } from "@/utils/MenuContext";
+import { Providers } from "../providers";
 
 const bigilla = localFont({
   src: "./fonts/Bigilla.otf",
@@ -79,21 +78,19 @@ export default function RootLayout({ children, params: { locale } }) {
       className={`${melodrama.variable} ${bigilla.variable}`}
     >
       <body className={`${inter.className} bg-primary antialiased`}>
-        <MenuProvider>
-          <Providers>
-            <TranslationsProvider
-              resources={resources}
-              locale={locale}
-              namespaces={["menu", "footer"]}
-            >
-              <div className="pb-14">
-                <Menu />
-              </div>
-              <SmoothScrolling>{children}</SmoothScrolling>
-              <Footer />
-            </TranslationsProvider>
-          </Providers>
-        </MenuProvider>
+        <Providers>
+          <TranslationsProvider
+            resources={resources}
+            locale={locale}
+            namespaces={["menu", "footer"]}
+          >
+            <div className="pb-14">
+              <Menu />
+            </div>
+            <SmoothScrolling>{children}</SmoothScrolling>
+            <Footer />
+          </TranslationsProvider>
+        </Providers>
       </body>
     </html>
   );
