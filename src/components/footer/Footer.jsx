@@ -11,7 +11,7 @@ export default function Footer() {
 
   useEffect(() => {
     setCurrentPath(pathname);
-  }, [pathname]);
+  }, [pathname, currentPath]);
   return (
     <div
       className={`relative ${currentPath === "/contact" ? "h-[150px]" : "h-[900px]"} `}
