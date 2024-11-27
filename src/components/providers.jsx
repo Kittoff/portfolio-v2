@@ -11,67 +11,7 @@ export function Providers({ children }) {
   const { isMenuClosedCompletely } = useMenuContext();
 
   return (
-    <TransitionRouter
-      auto={true}
-      leave={(next) => {
-        const tl = gsap
-          .timeline({
-            onComplete: next,
-          })
-          .fromTo(
-            firstLayer.current,
-            { y: "100%" },
-            {
-              y: 0,
-              duration: 0.5,
-              ease: "circ.inOut",
-            },
-          )
-          .fromTo(
-            secondLayer.current,
-            { y: "100%" },
-            {
-              y: 0,
-              duration: 0.5,
-              ease: "circ.inOut",
-            },
-            "<50%",
-          );
-
-        return () => {
-          tl.kill();
-        };
-      }}
-      enter={(next) => {
-        if (isMenuClosedCompletely) {
-          const tl = gsap
-            .timeline()
-            .fromTo(
-              secondLayer.current,
-              { y: 0 },
-              {
-                y: "-100%",
-                duration: 0.5,
-                ease: "circ.inOut",
-              },
-            )
-            .fromTo(
-              firstLayer.current,
-              { y: 0 },
-              {
-                y: "-100%",
-                duration: 0.5,
-                ease: "circ.inOut",
-              },
-              "<50%",
-            )
-            .call(next, undefined, "<50%");
-          return () => {
-            tl.kill();
-          };
-        }
-      }}
-    >
+    <TransitionRouter auto={true}>
       <main>{children}</main>
 
       <div
