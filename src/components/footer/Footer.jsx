@@ -10,16 +10,19 @@ export default function Footer() {
   const { t } = useTranslation();
 
   useEffect(() => {
-    console.log("currentPath", currentPath);
     setCurrentPath(pathname);
-  }, [pathname, currentPath]);
+  }, [pathname]);
+
+  // Vérifiez si le chemin se termine par "/contact"
+  const isContactPage = currentPath.endsWith("/contact");
+
   return (
     <div
-      className={`relative ${currentPath === "/contact" ? "h-[150px]" : "h-[900px]"} `}
+      className={`relative ${isContactPage ? "h-[150px]" : "h-[900px]"} `}
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
       <div
-        className={`bottom-0 ${currentPath === "/contact" ? "h-[150px]" : "h-[900px]"} w-full md:fixed`}
+        className={`bottom-0 ${isContactPage ? "h-[150px]" : "h-[900px]"} w-full md:fixed`}
       >
         <Content pathname={currentPath} />
       </div>

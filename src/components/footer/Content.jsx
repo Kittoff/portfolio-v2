@@ -6,20 +6,20 @@ import { useTranslation } from "react-i18next";
 export default function Content({ pathname }) {
   return (
     <div
-      className={`bg-footer absolute bottom-0 flex h-full w-full flex-col justify-between px-6 py-8 text-white md:px-12`}
+      className={`absolute bottom-0 flex h-full w-full flex-col justify-between bg-footer px-6 py-8 text-white md:px-12`}
     >
-      {pathname !== "/contact" && (
+      {!pathname.endsWith("/contact") && (
         <>
-          <Section1 />
-          <Section3 />
+          <FooterTitle />
+          <ContactInfos />
         </>
       )}
-      <Section2 />
+      <Copyright />
     </div>
   );
 }
 
-const Section1 = ({ text }) => {
+const FooterTitle = ({ text }) => {
   return (
     <div className="lg:px-40">
       <Nav />
@@ -27,7 +27,7 @@ const Section1 = ({ text }) => {
   );
 };
 
-const Section3 = () => {
+const ContactInfos = () => {
   return (
     <div className="flex h-40 flex-col justify-evenly overflow-hidden md:h-20 md:w-3/4 md:flex-row md:content-start md:justify-normal md:gap-11 lg:px-40">
       <div className="flex items-center justify-center rounded-full bg-red-400 px-5 py-5 md:py-1">
@@ -42,7 +42,7 @@ const Section3 = () => {
   );
 };
 
-const Section2 = () => {
+const Copyright = () => {
   return (
     <div className="flex shrink-0 flex-col justify-between">
       <Delimiter />
