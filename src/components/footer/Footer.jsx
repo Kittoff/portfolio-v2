@@ -10,6 +10,7 @@ export default function Footer() {
   const { t } = useTranslation();
 
   useEffect(() => {
+    console.log("currentPath", currentPath);
     setCurrentPath(pathname);
   }, [pathname, currentPath]);
   return (
