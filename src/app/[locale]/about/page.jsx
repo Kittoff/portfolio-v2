@@ -2,7 +2,7 @@ import initTranslations from "@/app/i18n";
 import TranslationsProvider from "@/components/TranslationProvider";
 import About from "@/components/about/About";
 
-export default async function Home({ params: { locale } }) {
+export default async function page({ params: { locale } }) {
   const { resources } = await initTranslations(locale, ["about"]);
   return (
     <TranslationsProvider

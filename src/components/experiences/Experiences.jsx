@@ -1,13 +1,16 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import ContentSection from "./ContentSection";
 // import { sections } from "./sections";
 // import { useTranslation } from "react-i18next";
 import TranslationsProvider from "../TranslationProvider";
 import { useTranslation } from "react-i18next";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const Experience = () => {
   const { t } = useTranslation();
+  const container = useRef(null);
   const sections = [
     {
       bgColor: "bg-[#4b565d]",
@@ -61,8 +64,45 @@ const Experience = () => {
     },
   ];
 
+  useGSAP(
+    () => {
+      gsap.set(".content", { autoAlpha: 1 });
+
+      gsap.fromTo(
+        ".content-item",
+        { y: 100, autoAlpha: 0 },
+        {
+          y: 0,
+          autoAlpha: 1,
+          stagger: 0.2, // Délai entre chaque élément
+          duration: 1,
+          ease: "power3.out", // Fonction d'ease pour une animation plus fluide
+          delay: 0.6, // Délai de départ de l'animation
+        },
+      );
+    },
+    { scope: container },
+  );
+
   return (
-    <div className="wrap">
+    <div ref={container} className="wrap">
+      <div className="content invisible flex flex-col items-center gap-10 px-5 text-center text-secondary">
+        <h2 className="content-item pt-5 text-step_h_0">
+          {t("experience_title")}
+        </h2>
+        <p className="content-item max-w-[800px] text-left text-step_p_0">
+          {t("experience_intro")}
+        </p>
+        <h3 className="content-item text-step_h__2">
+          {t("experience_subtitle")}
+        </h3>
+        <p className="content-item max-w-[800px] text-left text-step_p_0">
+          {t("experience_text")}
+        </p>
+        <p className="content-item mb-20 text-left text-step_p__1">
+          {t("experience_subtitle_projects")}
+        </p>
+      </div>
       {sections.map((section, index) => (
         <ContentSection key={index} {...section} />
       ))}
