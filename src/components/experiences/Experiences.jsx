@@ -48,7 +48,7 @@ const Experience = () => {
       offset: "6rem",
       imgSrc: "img/4.png",
       title: "Skywise",
-      subtitle: t("skywise description"),
+      subtitle: t("skywise_description"),
       text: t("skywise_text"),
       highlightWord: ["Airbus"],
     },
