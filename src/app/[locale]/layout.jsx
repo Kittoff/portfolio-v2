@@ -78,19 +78,19 @@ export default function RootLayout({ children, params: { locale } }) {
       className={`${melodrama.variable} ${bigilla.variable}`}
     >
       <body className={`${inter.className} bg-primary antialiased`}>
-        <Providers>
-          <TranslationsProvider
-            resources={resources}
-            locale={locale}
-            namespaces={["menu", "footer"]}
-          >
-            <div className="pb-14">
-              <Menu />
-            </div>
-            <SmoothScrolling>{children}</SmoothScrolling>
-            <Footer />
-          </TranslationsProvider>
-        </Providers>
+        {/* <Providers> */}
+        <TranslationsProvider
+          resources={resources}
+          locale={locale}
+          namespaces={["menu", "footer"]}
+        >
+          <div className="pb-14">
+            <Menu />
+          </div>
+          <SmoothScrolling>{children}</SmoothScrolling>
+          <Footer />
+        </TranslationsProvider>
+        {/* </Providers> */}
       </body>
     </html>
   );
