@@ -25,6 +25,7 @@ const bigilla = localFont({
   variable: "--font-bigilla",
   preload: true,
   weight: "100 900",
+  display: "swap",
 });
 
 export const melodrama = localFont({
@@ -32,6 +33,7 @@ export const melodrama = localFont({
   preload: true,
   variable: "--font-melodrama",
   weight: "300 700",
+  display: "swap",
 });
 
 const inter = Inter({
