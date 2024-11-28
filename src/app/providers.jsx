@@ -39,6 +39,10 @@ export function Providers({ children }) {
             },
             "<50%",
           );
+
+        return () => {
+          tl.kill();
+        };
       }}
       enter={(next) => {
         const tl = gsap
@@ -63,6 +67,10 @@ export function Providers({ children }) {
             "<50%",
           )
           .call(next, undefined, "<50%");
+
+        return () => {
+          tl.kill();
+        };
       }}
     >
       <main>{children}</main>
