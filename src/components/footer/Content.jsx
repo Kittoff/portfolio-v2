@@ -28,14 +28,26 @@ const FooterTitle = ({ text }) => {
 };
 
 const ContactInfos = () => {
+  const handlePhoneClick = () => {
+    window.location.href = "tel:+33769194855";
+  };
+  const handleMailClick = () => {
+    window.location.href = "mailto:info@christophelozano.com";
+  };
   return (
     <div className="flex h-40 flex-col justify-evenly overflow-hidden md:h-20 md:w-3/4 md:flex-row md:content-start md:justify-normal md:gap-11 lg:px-40">
-      <div className="flex items-center justify-center rounded-full bg-red-400 px-5 py-5 md:py-1">
+      <div
+        onClick={handleMailClick}
+        className="flex cursor-pointer items-center justify-center rounded-full bg-red-400 px-5 py-5 md:py-1"
+      >
         <a href="mailto:info@christophelozano.com">info@christophelozano.com</a>
       </div>
-      <div className="flex items-center justify-center rounded-full bg-red-400 px-5 py-5 md:py-1">
-        <a className="w-max" href="tel:info@christophelozano.com">
-          +33 6 00 00 00 00
+      <div
+        onClick={handlePhoneClick}
+        className="flex cursor-pointer items-center justify-center rounded-full bg-red-400 px-5 py-5 md:py-1"
+      >
+        <a className="w-max" href="tel:+33769194855">
+          +33 7 69 19 48 55
         </a>
       </div>
     </div>
@@ -43,13 +55,17 @@ const ContactInfos = () => {
 };
 
 const Copyright = () => {
+  const getYear = () => {
+    const date = new Date();
+    return date.getFullYear();
+  };
   return (
     <div className="flex shrink-0 flex-col justify-between">
       <Delimiter />
       <div className="flex justify-between">
         <div className="flex flex-col gap-2">
           <h3 className="text-step_p__1 uppercase text-[#ffffff80]">Version</h3>
-          <p className="flex">2024 © Edition</p>
+          <p className="flex">{getYear()} © Edition</p>
         </div>
         <div className="flex flex-col gap-2">
           <h3 className="text-step_p__1 uppercase text-[#ffffff80]">

@@ -14,6 +14,7 @@ import {
 } from "@react-three/drei";
 import { useTranslation } from "react-i18next";
 import useScrollControl from "@/utils/useScrollControl";
+import Loader from "@/utils/loader/Loader";
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -119,16 +120,16 @@ const Hero = () => {
               </p>
               <a
                 className="join w-full cursor-pointer rounded-bl-[30px] rounded-br-[10px] rounded-tl-[10px] rounded-tr-[30px] bg-customBlue py-3 text-center text-xs text-white md:w-1/2 lg:w-2/3"
-                href="mailto:"
+                href="mailto:info@christophelozano.com"
               >
                 <button type="button">{t("hero_join")}</button>
               </a>
             </div>
           </div>
         </div>
-        <div className="h-[400px] md:w-1/3 lg:h-screen">
+        <div className="flex h-[400px] items-center justify-center md:w-1/3 lg:h-screen">
           {isVisible && (
-            <Suspense fallback={"loading"}>
+            <Suspense fallback={<Loader />}>
               <Canvas
                 camera={{ position: [1.5, 0, 3], fov: 75 }}
                 resize={{ scroll: false }}

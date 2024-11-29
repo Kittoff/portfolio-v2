@@ -1,15 +1,14 @@
 "use client";
 import React, { useRef } from "react";
 import ContentSection from "./ContentSection";
-// import { sections } from "./sections";
-// import { useTranslation } from "react-i18next";
-import TranslationsProvider from "../TranslationProvider";
 import { useTranslation } from "react-i18next";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import useScrollControl from "@/utils/useScrollControl";
 
 const Experience = () => {
   const { t } = useTranslation();
+  const { unlockScroll } = useScrollControl();
   const container = useRef(null);
   const sections = [
     {
@@ -68,18 +67,20 @@ const Experience = () => {
     () => {
       gsap.set(".content", { autoAlpha: 1 });
 
-      gsap.fromTo(
-        ".content-item",
-        { y: 100, autoAlpha: 0 },
-        {
-          y: 0,
-          autoAlpha: 1,
-          stagger: 0.2, // Délai entre chaque élément
-          duration: 1,
-          ease: "power3.out", // Fonction d'ease pour une animation plus fluide
-          delay: 0.6, // Délai de départ de l'animation
-        },
-      );
+      gsap
+        .fromTo(
+          ".content-item",
+          { y: 100, autoAlpha: 0 },
+          {
+            y: 0,
+            autoAlpha: 1,
+            stagger: 0.2, // Délai entre chaque élément
+            duration: 1,
+            ease: "power3.out", // Fonction d'ease pour une animation plus fluide
+            delay: 0.6, // Délai de départ de l'animation
+          },
+        )
+        .eventCallback("onComplete", unlockScroll); // Appeler unlockScroll une fois les animations terminées;
     },
     { scope: container },
   );

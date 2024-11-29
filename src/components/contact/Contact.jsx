@@ -9,6 +9,7 @@ import Modal from "./Modal";
 import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
 import Loader from "@/utils/loader/Loader";
 import { useTranslation } from "react-i18next";
+import useScrollControl from "@/utils/useScrollControl";
 
 const Contact = () => {
   const { t } = useTranslation();
@@ -30,6 +31,7 @@ const Contact = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const { unlockScroll } = useScrollControl();
 
   const onSubmit = (data) => {
     setIsLoading(true);
@@ -80,7 +82,8 @@ const Contact = () => {
             ease: "expo.out",
           },
           "-=1",
-        );
+        )
+        .eventCallback("onComplete", unlockScroll); // Appeler unlockScroll une fois les animations terminées;
     },
     { scope: container },
   );
