@@ -23,7 +23,9 @@
     --foreground: #ededed;
   }
 } */
-
+canvas {
+  touch-action: none;
+}
 body {
   color: var(--foreground);
   background: var(--background);

@@ -138,14 +138,14 @@ const Hero = () => {
                 <Stage>
                   <Float
                     speed={1}
-                    rotationIntensity={1}
+                    rotationIntensity={0.4}
                     floatIntensity={0.5}
-                    floatingRange={[0.2, 0.5]}
+                    floatingRange={[0.01, 0.03]}
                   >
                     <PresentationControls
                       global={false}
                       polar={[-Math.PI / 9, Math.PI / 9]}
-                      azimuth={[-Math.PI / 12, Math.PI / 4]}
+                      azimuth={[-Math.PI / 15, Math.PI / 4]}
                     >
                       <GlassPortal />
                     </PresentationControls>
