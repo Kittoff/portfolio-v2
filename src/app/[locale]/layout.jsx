@@ -76,8 +76,8 @@ export function generateStaticParams() {
   return i18nConfig.locales.map((locale) => ({ locale }));
 }
 
-export default function RootLayout({ children, params: { locale } }) {
-  const { resources } = initTranslations(locale, ["menu", "footer"]);
+export default async function RootLayout({ children, params: { locale } }) {
+  const { resources } = await initTranslations(locale, ["menu", "footer"]);
   return (
     <html
       lang={locale}
@@ -85,17 +85,17 @@ export default function RootLayout({ children, params: { locale } }) {
       className={`${melodrama.variable} ${bigilla.variable}`}
     >
       <body className={`${inter.className} bg-primary antialiased`}>
-        {/* <TranslationsProvider
+        <TranslationsProvider
           resources={resources}
           locale={locale}
           namespaces={["menu", "footer"]}
-        > */}
-        <div className="pb-14">
-          <Menu />
-        </div>
-        <SmoothScrolling>{children}</SmoothScrolling>
-        <Footer />
-        {/* </TranslationsProvider> */}
+        >
+          <div className="pb-14">
+            <Menu />
+          </div>
+          <SmoothScrolling>{children}</SmoothScrolling>
+          <Footer />
+        </TranslationsProvider>
       </body>
     </html>
   );
