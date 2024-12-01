@@ -4,7 +4,7 @@ import "./style.css";
 const Loader = () => {
   return (
     <>
-      <div className="pulse"></div>
+      <div className="loader"></div>
     </>
   );
 };

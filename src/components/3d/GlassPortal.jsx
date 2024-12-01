@@ -29,7 +29,7 @@ const GlassPortal = () => {
   return (
     <>
       <group ref={modelRef}>
-        <Model position={[0, -1.2, -0.5]} scale={1.4} />
+        <Model position={[0, -1.2, -0.5]} scale={[1.4, 1.4, 1]} />
       </group>
 
       <group>

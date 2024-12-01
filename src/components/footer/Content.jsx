@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 export default function Content({ pathname }) {
   return (
     <div
-      className={`absolute bottom-0 flex h-full w-full flex-col justify-between bg-footer px-6 py-8 text-white md:px-12`}
+      className={`absolute bottom-0 flex h-full w-full flex-col justify-between bg-footer px-6 py-8 text-secondary md:px-12`}
     >
       {!pathname.endsWith("/contact") && (
         <>
@@ -38,13 +38,13 @@ const ContactInfos = () => {
     <div className="flex h-40 flex-col justify-evenly overflow-hidden md:h-20 md:w-3/4 md:flex-row md:content-start md:justify-normal md:gap-11 lg:px-40">
       <div
         onClick={handleMailClick}
-        className="flex cursor-pointer items-center justify-center rounded-full bg-red-400 px-5 py-5 md:py-1"
+        className="bg-footer_button flex cursor-pointer items-center justify-center rounded-full px-5 py-5 md:py-1"
       >
         <a href="mailto:info@christophelozano.com">info@christophelozano.com</a>
       </div>
       <div
         onClick={handlePhoneClick}
-        className="flex cursor-pointer items-center justify-center rounded-full bg-red-400 px-5 py-5 md:py-1"
+        className="bg-footer_button flex cursor-pointer items-center justify-center rounded-full px-5 py-5 md:py-1"
       >
         <a className="w-max" href="tel:+33769194855">
           +33 7 69 19 48 55
