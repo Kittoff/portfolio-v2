@@ -1,7 +1,10 @@
-import React from "react";
+"use client";
+import React, { useRef } from "react";
 import Time from "./Time";
 import Delimiter from "../Delimiter";
 import { useTranslation } from "react-i18next";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 export default function Content({ pathname }) {
   return (
@@ -19,7 +22,7 @@ export default function Content({ pathname }) {
   );
 }
 
-const FooterTitle = ({ text }) => {
+const FooterTitle = () => {
   return (
     <div className="lg:px-40">
       <Nav />
@@ -28,26 +31,62 @@ const FooterTitle = ({ text }) => {
 };
 
 const ContactInfos = () => {
+  const container = useRef(null);
+
+  const handleMouseEnter = (selector) => {
+    gsap.to(selector, {
+      y: "-50%",
+    });
+  };
+
+  const handleMouseLeave = (selector) => {
+    gsap.to(selector, {
+      y: "-200%",
+      onComplete: () => gsap.set(selector, { y: "100%" }),
+    });
+  };
+
   const handlePhoneClick = () => {
     window.location.href = "tel:+33769194855";
   };
+
   const handleMailClick = () => {
     window.location.href = "mailto:info@christophelozano.com";
   };
+
   return (
-    <div className="flex h-40 flex-col justify-evenly overflow-hidden md:h-20 md:w-3/4 md:flex-row md:content-start md:justify-normal md:gap-11 lg:px-40">
+    <div
+      ref={container}
+      className="flex h-40 flex-col justify-evenly overflow-hidden md:h-20 md:w-3/4 md:flex-row md:content-start md:justify-normal md:gap-11 lg:px-40"
+    >
       <div
+        onMouseEnter={() => handleMouseEnter(".email-animation")}
+        onMouseLeave={() => handleMouseLeave(".email-animation")}
         onClick={handleMailClick}
-        className="bg-footer_button flex cursor-pointer items-center justify-center rounded-full px-5 py-5 md:py-1"
       >
-        <a href="mailto:info@christophelozano.com">info@christophelozano.com</a>
+        <a
+          href="mailto:info@christophelozano.com"
+          className="relative flex cursor-pointer items-center justify-center overflow-hidden rounded-full border border-footer_button px-5 py-5"
+        >
+          <div className="email-animation absolute top-[100%] h-80 w-72 rounded-full bg-footer_button"></div>
+          <span className="z-[2]">
+            <span>info@christophelozano.com</span>
+          </span>
+        </a>
       </div>
       <div
+        onMouseEnter={() => handleMouseEnter(".phone-animation")}
+        onMouseLeave={() => handleMouseLeave(".phone-animation")}
         onClick={handlePhoneClick}
-        className="bg-footer_button flex cursor-pointer items-center justify-center rounded-full px-5 py-5 md:py-1"
       >
-        <a className="w-max" href="tel:+33769194855">
-          +33 7 69 19 48 55
+        <a
+          href="tel:+33769194855"
+          className="relative flex cursor-pointer items-center justify-center overflow-hidden rounded-full border border-footer_button px-5 py-5"
+        >
+          <div className="phone-animation absolute top-[100%] h-80 w-80 rounded-full bg-footer_button"></div>
+          <span className="z-[2]">
+            <span>+33 7 69 19 48 55</span>
+          </span>
         </a>
       </div>
     </div>
@@ -59,6 +98,7 @@ const Copyright = () => {
     const date = new Date();
     return date.getFullYear();
   };
+
   return (
     <div className="flex shrink-0 flex-col justify-between">
       <Delimiter />
@@ -78,8 +118,9 @@ const Copyright = () => {
   );
 };
 
-const Nav = ({}) => {
+const Nav = () => {
   const { t } = useTranslation();
+
   return (
     <div className="shrink-1 mt-28 flex gap-20">
       <h2 className="flex flex-col items-start text-step_h_0">

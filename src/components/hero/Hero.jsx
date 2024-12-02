@@ -15,6 +15,7 @@ import {
 import { useTranslation } from "react-i18next";
 import useScrollControl from "@/utils/useScrollControl";
 import Loader from "@/utils/loader/Loader";
+import Link from "next/link";
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -81,7 +82,18 @@ const Hero = () => {
   const join = () => {
     window.location = "mailto:xyz@yourapplicationdomain.com";
   };
+  const handleMouseEnter = (selector) => {
+    gsap.to(selector, {
+      y: "-50%",
+    });
+  };
 
+  const handleMouseLeave = (selector) => {
+    gsap.to(selector, {
+      y: "-200%",
+      onComplete: () => gsap.set(selector, { y: "100%" }),
+    });
+  };
   return (
     <div ref={container} className="">
       <main className="texte flex flex-col px-5 text-[70px] text-secondary md:items-center md:justify-around md:text-8xl lg:h-screen lg:flex-row">
@@ -118,12 +130,22 @@ const Hero = () => {
               <p className="join text-xs md:w-1/2 lg:w-2/3">
                 {t("hero_intro")}
               </p>
-              <a
-                className="join w-full cursor-pointer rounded-bl-[30px] rounded-br-[10px] rounded-tl-[10px] rounded-tr-[30px] bg-customBlue py-3 text-center text-xs text-white md:w-1/2 lg:w-2/3"
-                href="mailto:info@christophelozano.com"
+
+              <div
+                onMouseEnter={() => handleMouseEnter(".hero-animation")}
+                onMouseLeave={() => handleMouseLeave(".hero-animation")}
+                className="join w-full cursor-pointer overflow-hidden rounded-bl-[30px] rounded-br-[10px] rounded-tl-[10px] rounded-tr-[30px] border border-customBlue text-center text-xs text-secondary md:w-1/2 lg:w-2/3"
               >
-                <button type="button">{t("hero_join")}</button>
-              </a>
+                <Link
+                  href="/contact"
+                  className="relative flex cursor-pointer items-center justify-center rounded-full rounded-bl-[30px] rounded-br-[10px] rounded-tl-[10px] rounded-tr-[30px] px-5 py-5"
+                >
+                  <div className="hero-animation absolute top-[100%] h-80 w-[110%] rounded-full bg-customBlue"></div>
+                  <span className="z-[2]">
+                    <span className="text-step_p_0">{t("hero_join")}</span>
+                  </span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
