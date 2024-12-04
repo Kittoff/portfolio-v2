@@ -4,8 +4,12 @@ import { useMenuContext } from "@/app/utils/hooks/MenuContext";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
+import SplitType from "split-type";
+
+import { usePathname } from "next/navigation";
+import React, { use, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import TextDipserse from "../TextDisperse/TextDisperse";
 
 const Menu = () => {
   const { t } = useTranslation();
@@ -13,6 +17,7 @@ const Menu = () => {
   const tl = useRef();
   const { setIsMenuClosedCompletely } = useMenuContext();
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -53,13 +58,16 @@ const Menu = () => {
       setIsMenuClosedCompletely(false);
     } else {
       tl.current.reverse().then(() => {
-        console.log("Menu fermé complètement");
         setIsMenuClosedCompletely(true);
       });
       gsap.set("body", { overflow: "auto" });
     }
-  }, [isOpen, setIsMenuClosedCompletely]);
+  }, [isOpen, setIsMenuClosedCompletely, pathname]);
 
+  const isActive = (linkPath) => {
+    const currentPath = pathname.replace(/^\/(?:fr|ja)/, "");
+    return currentPath === linkPath || (linkPath === "/" && currentPath === "");
+  };
   return (
     <div
       data-lenis-stop
@@ -86,7 +94,14 @@ const Menu = () => {
               key={link.path}
             >
               <div className="holder relative">
-                <Link href={link.path}>{link.label}</Link>
+                <Link
+                  className={`${isActive(link.path) ? "text-secondary" : ""}`}
+                  href={link.path}
+                >
+                  <TextDipserse>
+                    <p>{link.label}</p>
+                  </TextDipserse>
+                </Link>
               </div>
             </div>
           ))}

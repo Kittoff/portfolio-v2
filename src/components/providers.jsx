@@ -13,7 +13,6 @@ export function Providers({ children }) {
     <TransitionRouter
       auto={true}
       leave={(next, from, to) => {
-        console.log({ from, to });
         const tl = gsap
           .timeline({
             onComplete: next,
