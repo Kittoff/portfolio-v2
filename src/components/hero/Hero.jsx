@@ -16,6 +16,7 @@ import { useTranslation } from "react-i18next";
 import useScrollControl from "@/utils/useScrollControl";
 import Loader from "@/utils/loader/Loader";
 import Link from "next/link";
+import RevealImage from "../RevealImage";
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -23,6 +24,7 @@ const Hero = () => {
   const name = useRef();
   const container = useRef();
   const [isVisible, setIsVisible] = useState(false);
+  const [revealProgress, setRevealProgress] = useState(0);
 
   // Utiliser le custom hook pour contrôler le scroll
   const { unlockScroll } = useScrollControl();
@@ -94,6 +96,28 @@ const Hero = () => {
       onComplete: () => gsap.set(selector, { y: "100%" }),
     });
   };
+
+  useEffect(() => {
+    let frameId;
+    const startTime = performance.now();
+
+    const animateProgress = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / 4000, 0.7); // Durée de 2 secondes pour aller de 0 à 1
+      setRevealProgress(progress);
+
+      if (progress < 1) {
+        frameId = requestAnimationFrame(animateProgress);
+      }
+    };
+
+    frameId = requestAnimationFrame(animateProgress);
+
+    return () => {
+      cancelAnimationFrame(frameId);
+    };
+  }, []);
+
   return (
     <div ref={container} className="">
       <main className="texte flex flex-col px-5 text-[70px] text-secondary md:items-center md:justify-around md:text-8xl lg:h-screen lg:flex-row">
@@ -151,28 +175,12 @@ const Hero = () => {
         </div>
         <div className="flex h-[400px] items-center justify-center md:w-1/3 lg:h-screen">
           {isVisible && (
-            <Suspense fallback={<Loader />}>
-              <Canvas
-                camera={{ position: [1.5, 0, 3], fov: 75 }}
-                resize={{ scroll: false }}
-              >
-                <Environment preset="lobby" />
-                <Stage>
-                  <Float
-                    speed={1}
-                    rotationIntensity={0.4}
-                    floatIntensity={0.5}
-                    floatingRange={[0.01, 0.03]}
-                  >
-                    <PresentationControls
-                      global={false}
-                      polar={[-Math.PI / 9, Math.PI / 9]}
-                      azimuth={[-Math.PI / 15, Math.PI / 4]}
-                    >
-                      <GlassPortal />
-                    </PresentationControls>
-                  </Float>
-                </Stage>
+            <Suspense fallback={null}>
+              <Canvas>
+                <RevealImage
+                  imageTexture={"./image.jpg"}
+                  revealProgress={revealProgress}
+                />
               </Canvas>
             </Suspense>
           )}

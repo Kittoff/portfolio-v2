@@ -50,7 +50,7 @@ module.exports = {
         primary: "#141414",
         secondary: "#d7dfd6 ",
         menuBg: "#a9cec2",
-        footer: "#596371",
+        footer: "#faf8f3",
         footer_button: "#4e8499",
         menuText: "#292735",
         customGrey: "#686868",

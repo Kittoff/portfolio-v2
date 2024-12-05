@@ -9,7 +9,7 @@ import gsap from "gsap";
 export default function Content({ pathname }) {
   return (
     <div
-      className={`absolute bottom-0 flex h-full w-full flex-col justify-between bg-footer px-6 py-8 text-secondary md:px-12`}
+      className={`absolute bottom-0 flex h-full w-full flex-col justify-between bg-footer px-6 py-8 text-primary md:px-12`}
     >
       {!pathname.endsWith("/contact") && (
         <>
@@ -24,7 +24,7 @@ export default function Content({ pathname }) {
 
 const FooterTitle = () => {
   return (
-    <div className="lg:px-40">
+    <div className="lg:px-96">
       <Nav />
     </div>
   );
@@ -57,7 +57,7 @@ const ContactInfos = () => {
   return (
     <div
       ref={container}
-      className="flex h-40 flex-col justify-evenly overflow-hidden md:h-20 md:w-3/4 md:flex-row md:content-start md:justify-normal md:gap-11 lg:px-40"
+      className="flex h-40 flex-col justify-evenly overflow-hidden md:h-20 md:w-3/4 md:flex-row md:content-start md:justify-normal md:gap-11 lg:px-96"
     >
       <div
         onMouseEnter={() => handleMouseEnter(".email-animation")}
@@ -104,13 +104,11 @@ const Copyright = () => {
       <Delimiter />
       <div className="flex justify-between">
         <div className="flex flex-col gap-2">
-          <h3 className="text-step_p__1 uppercase text-[#ffffff80]">Version</h3>
+          <h3 className="text-step_p__1 uppercase text-primary">Version</h3>
           <p className="flex">{getYear()} © Edition</p>
         </div>
         <div className="flex flex-col gap-2">
-          <h3 className="text-step_p__1 uppercase text-[#ffffff80]">
-            Local Time
-          </h3>
+          <h3 className="text-step_p__1 uppercase text-primary">Local Time</h3>
           <Time />
         </div>
       </div>
