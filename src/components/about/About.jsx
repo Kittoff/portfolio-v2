@@ -2,7 +2,7 @@
 import Card from "@/components/about/hitsory/Card";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import SplitType from "split-type";
 import { useTranslation } from "react-i18next";
 import useScrollControl from "@/utils/useScrollControl";
@@ -11,7 +11,7 @@ const About = () => {
   const container = useRef();
   const tl = useRef();
   const { t } = useTranslation();
-  const { unlockScroll } = useScrollControl();
+  const { unlockScroll, lockScroll } = useScrollControl();
   const history = [
     {
       text: t("about_1988_text"),
@@ -34,6 +34,10 @@ const About = () => {
       title: t("about_2024_title"),
     },
   ];
+
+  useEffect(() => {
+    lockScroll();
+  }, []);
 
   useGSAP(
     () => {

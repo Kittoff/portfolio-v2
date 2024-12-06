@@ -24,7 +24,7 @@ const useScrollControl = () => {
     setEnableScroll(true);
   };
 
-  return { lockScroll, unlockScroll };
+  return { enableScroll, unlockScroll, lockScroll };
 };
 
 export default useScrollControl;

@@ -27,10 +27,11 @@ const Hero = () => {
   const [revealProgress, setRevealProgress] = useState(0);
 
   // Utiliser le custom hook pour contrôler le scroll
-  const { unlockScroll } = useScrollControl();
+  const { unlockScroll, lockScroll } = useScrollControl();
 
   useEffect(() => {
     // Afficher le contenu après un délai
+    lockScroll();
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 1000);

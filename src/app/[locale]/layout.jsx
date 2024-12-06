@@ -10,6 +10,7 @@ import TranslationsProvider from "@/components/TranslationProvider";
 import initTranslations from "../i18n";
 import { MenuProvider } from "../utils/hooks/MenuContext";
 import { Providers } from "@/components/providers";
+import CustomHead from "@/utils/metadata/CustomHead";
 
 const bigilla = localFont({
   src: [
@@ -87,6 +88,7 @@ export default async function RootLayout({ children, params: { locale } }) {
       className={`${melodrama.variable} ${bigilla.variable}`}
     >
       <body className={`${inter.className} bg-primary antialiased`}>
+        <CustomHead />
         <MenuProvider>
           <Providers>
             <TranslationsProvider

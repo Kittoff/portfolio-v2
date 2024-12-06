@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import ContentSection from "./ContentSection";
 import { useTranslation } from "react-i18next";
 import { useGSAP } from "@gsap/react";
@@ -8,7 +8,7 @@ import useScrollControl from "@/utils/useScrollControl";
 
 const Experience = () => {
   const { t } = useTranslation();
-  const { unlockScroll } = useScrollControl();
+  const { unlockScroll, lockScroll } = useScrollControl();
   const container = useRef(null);
   const sections = [
     {
@@ -62,6 +62,10 @@ const Experience = () => {
       highlightWord: ["CNES", "NASA"],
     },
   ];
+
+  useEffect(() => {
+    lockScroll();
+  }, []);
 
   useGSAP(
     () => {

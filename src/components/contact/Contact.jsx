@@ -31,7 +31,8 @@ const Contact = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
-  const { lockScroll, unlockScroll } = useScrollControl();
+  const { unlockScroll, lockScroll } = useScrollControl();
+
   const onSubmit = (data) => {
     setIsLoading(true);
     try {
@@ -58,6 +59,10 @@ const Contact = () => {
   const container = useRef(null);
   const tl = useRef();
   const tlSend = useRef();
+
+  useEffect(() => {
+    lockScroll();
+  }, []);
 
   useGSAP(
     () => {
@@ -110,13 +115,7 @@ const Contact = () => {
     },
     { scope: container },
   );
-  useEffect(() => {
-    if (isModalOpen) {
-      lockScroll(); // Désactive le scroll
-    } else {
-      unlockScroll(); // Active le scroll
-    }
-  }, [isModalOpen]);
+
   useEffect(() => {
     if (hover) {
       tlSend.current.play();
