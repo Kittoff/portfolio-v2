@@ -123,7 +123,7 @@ const Nav = () => {
     <div className="shrink-1 mt-28 flex gap-20">
       <h2 className="flex flex-col items-start text-step_h_0">
         <div className="flex items-center gap-1">
-          <div className="h-8 w-8 rounded-full bg-red-300" />
+          <div className="h-8 w-8 rounded-full bg-menuBg" />
           {t("footer:footer_work")}
         </div>
         <div>{t("footer:footer_together")}</div>
