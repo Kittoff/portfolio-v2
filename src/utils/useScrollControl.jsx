@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import gsap from "gsap";
 
 const useScrollControl = () => {
-  const [enableScroll, setEnableScroll] = useState(false);
+  const [enableScroll, setEnableScroll] = useState(true);
 
   useEffect(() => {
     if (enableScroll) {
@@ -16,11 +16,15 @@ const useScrollControl = () => {
     }
   }, [enableScroll]);
 
+  const lockScroll = () => {
+    setEnableScroll(false);
+  };
+
   const unlockScroll = () => {
     setEnableScroll(true);
   };
 
-  return { enableScroll, unlockScroll };
+  return { lockScroll, unlockScroll };
 };
 
 export default useScrollControl;

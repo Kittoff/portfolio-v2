@@ -31,8 +31,7 @@ const Contact = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
-  const { unlockScroll } = useScrollControl();
-
+  const { lockScroll, unlockScroll } = useScrollControl();
   const onSubmit = (data) => {
     setIsLoading(true);
     try {
@@ -111,7 +110,13 @@ const Contact = () => {
     },
     { scope: container },
   );
-
+  useEffect(() => {
+    if (isModalOpen) {
+      lockScroll(); // Désactive le scroll
+    } else {
+      unlockScroll(); // Active le scroll
+    }
+  }, [isModalOpen]);
   useEffect(() => {
     if (hover) {
       tlSend.current.play();
@@ -267,8 +272,8 @@ const Contact = () => {
         </div>
       </form>
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <h2>{t("contact_success_title")}</h2>
-        <p>{t("contact_success_text")}</p>
+        <h2 className="text-step_h__2">{t("contact_success_title")}</h2>
+        <p className="mb-10 mt-5 text-step_p_2"> {t("contact_success_text")}</p>
         <Fireworks autorun={{ speed: 3 }} />
       </Modal>
     </div>
