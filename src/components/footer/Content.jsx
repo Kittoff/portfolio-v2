@@ -74,7 +74,7 @@ const ContactInfos = () => {
           </span>
         </a>
       </div>
-      <div
+      {/* <div
         onMouseEnter={() => handleMouseEnter(".phone-animation")}
         onMouseLeave={() => handleMouseLeave(".phone-animation")}
         onClick={handlePhoneClick}
@@ -88,7 +88,7 @@ const ContactInfos = () => {
             <span>+33 7 69 19 48 55</span>
           </span>
         </a>
-      </div>
+      </div> */}
     </div>
   );
 };
