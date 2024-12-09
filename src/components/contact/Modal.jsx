@@ -21,7 +21,7 @@ const Modal = ({ isOpen, onClose, children }) => {
       data-lenis-prevent
       className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 font-bigilla text-primary"
     >
-      <div className="rounded-bl-[30px] rounded-br-[80px] rounded-tl-[80px] rounded-tr-[30px] bg-menuBg p-16">
+      <div className="m-9 rounded-bl-[30px] rounded-br-[80px] rounded-tl-[80px] rounded-tr-[30px] bg-menuBg px-6 pb-8 pt-8">
         <div className="flex flex-col items-center justify-center">
           {children}
           <div
